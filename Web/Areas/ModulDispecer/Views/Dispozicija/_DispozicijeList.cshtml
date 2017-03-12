@@ -1,0 +1,62 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model IPagedList<DispozicijeIndexVM>
+
+
+<div id="dispozicije-output">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled dispozicija</h3>
+        </div>
+        <div class="x_content">
+         
+                <table class="table table-hover ">
+                    <thead>
+                        <tr class="headings">
+                            <th>Racun br.</th>
+                            <th>Datum dispozicije</th>
+                            <th>Datum ispostave</th>
+                            <th>Klijent</th>
+                            <th>Primalac</th>
+                            <th>Država od</th>
+                            <th>Država do</th>
+
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (DispozicijeIndexVM item in Model)
+                        {
+                            <tr>
+
+                                <td>@Html.ActionLink(item.RacunGuid, "Details", new { dispozicijaId = item.DispozicijaId })</td>
+
+                                <td>@item.DatumDispozicije.Value.ToShortDateString()    </td>
+
+                                <td>@item.DatumIspostave.ToShortDateString()</td>
+
+                                <td>@item.NazivKlijenta</td>
+
+                                <td>@item.Primalac</td>
+
+                                <td>@item.DrzavaOd</td>
+                                <td>@item.DrzavaDo</td>
+
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="paged-list" data-otf-target="#dispozicije-output">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.PageNumbersOnly)
+
+                </div>
+            </div>
+        </div>
+    </div>

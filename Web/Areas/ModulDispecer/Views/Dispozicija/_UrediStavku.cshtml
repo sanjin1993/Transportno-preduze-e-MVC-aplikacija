@@ -1,0 +1,44 @@
+﻿@model TransportnoPreduzece.Web.Areas.ModulDispecer.Models.StavkaVM
+
+@{ 
+    Layout = null;
+}
+
+
+
+@using (Ajax.BeginForm("SnimiStavku", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "stavke" }))
+{
+    <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+            <label>Naziv</label>
+            @Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x=>x.Naziv)
+
+        </div>
+        <div class="form-group">
+            <label>Količina</label>
+            @Html.TextBoxFor(x => x.Kolicina, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Kolicina)
+
+
+
+
+        </div>
+
+        <div class="form-group">
+            <label>Tip količine</label>
+            @Html.DropDownListFor(x => x.KolicinaTipId, Model.TipoviKolicine, "Odaberite tip", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.KolicinaTipId)
+
+
+        </div>
+        @Html.HiddenFor(x=>x.StavkaId)
+        @Html.HiddenFor(x=>x.DispozicijaId)
+        <input type="submit" value="Spremi" class="btn btn-primary pull-right" />
+
+
+    </div>
+}
+   
+
+

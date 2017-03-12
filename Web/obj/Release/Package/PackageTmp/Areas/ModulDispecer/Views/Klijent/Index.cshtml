@@ -1,0 +1,65 @@
+﻿@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@using System.Data.Entity
+@using PagedList
+@model IPagedList<TransportnoPreduzece.Web.Areas.ModulDispecer.Models.KlijentiIndexVM>
+@using TransportnoPreduzece.Data.Models
+@{
+    ViewBag.Title = "Klijenti";
+    List<SelectListItem> drzave = (List<SelectListItem>)ViewData["drzave"];
+
+}
+
+<div class="row klijenti">
+    <div class="col-md-12">
+
+        @using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "client-output"
+                    }))
+        {
+
+
+            <div class="form-inline">
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Naziv</label>
+                    @Html.TextBox("nazivKlijenta", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Telefon</label>
+                    @Html.TextBox("telefon", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Adresa</label>
+                    @Html.TextBox("adresa", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Drzava</label>
+                    @Html.DropDownList("DrzavaId", drzave, "Odaberite drzavu", new { @class = "form-control", onchange = @"form.submit();", })
+
+                </div>
+
+
+                <div class="hidden-xs-12">
+                    <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+                </div>
+            </div>
+
+        }
+
+
+    </div>
+    <hr />
+    <div class="col-md-12">
+
+
+
+        @Html.Partial("_KlijentList", Model)
+
+
+    </div>
+</div>
+
+

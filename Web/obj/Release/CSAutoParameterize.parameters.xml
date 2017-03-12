@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TPConnectionString-Web.config Connection String" description="TPConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=app.fit.ba,1433;Initial Catalog=si113_TransportnoPreduzece;Integrated Security=false;User ID=ib120011;Password=7c0s!1;MultipleActiveResultSets=true" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\zek\\Documents\\Visual\ Studio\ 2015\\Projects\\TransportnoPreduzece\\Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TPConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

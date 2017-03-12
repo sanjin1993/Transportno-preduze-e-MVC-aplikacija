@@ -1,0 +1,31 @@
+﻿@model List<TransportnoPreduzece.Web.Areas.ModulDispecer.Models.StavkaVM>
+ @using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+
+@{ 
+    Layout = null;
+}
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Količina</th>
+            <th>Tip količine</th>
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        @foreach (StavkaVM item in Model)
+        {
+            <tr>
+                <td>@item.Naziv</td>
+                <td>@item.Kolicina</td>
+                <td>@item.TipKolicine</td>
+                <td class="text-right">@Ajax.ActionLink(((char)160).ToString(), "UrediStavku","Dispozicija",new { id = item.StavkaId },new AjaxOptions { UpdateTargetId = "stavke", HttpMethod = "get" },new { @class = "glyphicon glyphicon-edit" })</td>
+                <td  class="text-right"> @Ajax.ActionLink(((char)160).ToString(), "ObrisiStavku", "Dispozicija", new { id = item.StavkaId }, new AjaxOptions { UpdateTargetId = "stavke", HttpMethod = "post" ,Confirm="Sigurno želite obrisati stavku?"}, new { @class = "glyphicon glyphicon-minus-sign" })</td>
+                
+                
+            </tr>
+        }
+    </tbody>
+</table>

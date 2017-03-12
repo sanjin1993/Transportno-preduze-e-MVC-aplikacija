@@ -1,0 +1,53 @@
+﻿@model TransportnoPreduzece.Web.Areas.ModulDispecer.Models.InstradacijaDetaljnoVM
+
+
+
+                 @using (Ajax.BeginForm("Uredi", new { instradacijaId = Model.InstradacijaId}, new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateModel(data);" }))
+                 {
+                    @Html.ValidationSummary(false)
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            <label>Ulazna carinarnica</label>
+                            @Html.TextBoxFor(model => model.UlaznaCarinarnica, new { @class = "form-control " })
+                            @Html.ValidationMessageFor(model => model.UlaznaCarinarnica)
+
+                        </div>
+                        <div class="form-group">
+                            <label>Izlazna carinarnica</label>
+                            @Html.TextBoxFor(model => model.UlaznaCarinarnica, new { @class = "form-control " })
+                            @Html.ValidationMessageFor(model => model.IzlaznaCarinarnica)
+
+                        </div>
+                        <div class="form-group">
+                            <label>Vozač</label>
+                            @Html.DropDownListFor(model => model.VozacId, Model.Vozaci, "Odaberite vozača", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.VozacId)
+
+
+                        </div>
+
+                            <div class="form-group">
+                                <label>Priključno vozilo</label>
+                                @Html.DropDownListFor(model => model.PrikljucnoVoziloId, Model.PrikljucnaVozila, "Odaberite priključno vozilo", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PrikljucnoVoziloId)
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Vozilo</label>
+                                @Html.DropDownListFor(model => model.VoziloId, Model.Vozila, "Odaberite vozilo", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VoziloId)
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status</label>
+                                @Html.DropDownListFor(model=>model.StatusInstradacijeId,Model.Statusi,"Odaberite status", new { @class="form-control"})
+                                </div>
+                                @Html.HiddenFor(x=>x.DispozicijaId)
+
+                                <input type="submit" class="btn btn-primary pull-right" value="Spremi" />
+
+                                }

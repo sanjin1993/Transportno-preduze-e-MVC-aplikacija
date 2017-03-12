@@ -1,0 +1,43 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model IPagedList<TransportnoPreduzece.Web.Areas.ModulDispecer.Models.DispozicijeIndexVM>
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Poslovi</h3>
+    </div>
+
+    <div class="x_content" id="profil-dispozicije">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Racun guid</th>
+                    <th>Datum</th>
+                    <th>Primalac</th>
+                    <th>Cijena</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (DispozicijeIndexVM item in Model)
+                {
+                    <tr >
+                        <td>@Html.ActionLink(item.RacunGuid, "Details", "Dispozicija", new { dispozicijaId = item.DispozicijaId },null)</td>
+                        <td>@item.DatumDispozicije.Value.ToShortDateString()</td>
+                        <td>@item.Primalac</td>
+                        <td>@Math.Round(item.Cijena, 2)</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+          
+            
+    @Html.PagedListPager(Model, page => Url.Action("KlijentDispozicije", new { page } ), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "profil-dispozicije"}))
+
+            
+
+        
+    </div>
+
+</div>

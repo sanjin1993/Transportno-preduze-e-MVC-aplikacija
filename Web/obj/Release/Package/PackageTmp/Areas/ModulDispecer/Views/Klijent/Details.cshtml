@@ -1,0 +1,24 @@
+﻿@model TransportnoPreduzece.Data.Models.Klijent 
+    
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<dl>
+    <dt>Naziv</dt>
+    <dd>@Html.DisplayFor(model=>Model.Naziv)</dd>
+
+    <dt>Telefon</dt>
+    <dd>@Html.DisplayFor(model=>Model.Telefon)</dd>
+
+    <dt>Fax</dt>
+    <dd>@Html.DisplayFor(model=>Model.Fax)</dd>
+
+    <dt>ID Broj</dt>
+    <dd>@Html.DisplayFor(model=>model.IdBroj)</dd>
+
+    <dt>Adresa</dt>
+    <dd>@Html.DisplayFor(model=>Model.Adresa)</dd>
+</dl>

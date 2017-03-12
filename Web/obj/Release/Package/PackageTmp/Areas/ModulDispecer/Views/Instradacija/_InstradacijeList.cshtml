@@ -1,0 +1,62 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model IPagedList<InstradacijeIndexVM>
+
+ @{ 
+     Layout = null;
+ }
+       
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled Instradacija</h3>
+        </div>
+        <div class="x_content">
+            <div class="clearfix"></div>
+                <table class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Ime i prezime vozača</th>
+                            <th>Država od</th>
+                            <th>Država do</th>
+                            <th>Vozilo</th>
+                            <th>Priključno vozilo</th>
+
+                            <th>Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (InstradacijeIndexVM item in Model)
+                        {
+
+                            <tr>
+
+                                <td>@Html.ActionLink(item.Datum.ToShortDateString(), "Details", "Instradacija", new { instradacijaId = item.InstradacijaId }, null)</td>
+                                <td>@item.ImePrezime</td>
+                                <td>@item.DrzavaOd</td>
+                                <td>@item.DravaDo</td>
+                                <td>@item.Vozilo</td>
+                                <td>@item.PrikljucnoVozilo</td>
+                                <td>@item.Status</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            
+            <div class="paged-list text-center" data-otf-target="#instradacije-output">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.PageNumbersOnly)
+
+            </div>
+
+
+
+
+
+        </div>
+        </div>

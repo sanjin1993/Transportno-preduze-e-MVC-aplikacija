@@ -1,0 +1,141 @@
+﻿@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+
+
+@model DispozicijaDetaljnoVM
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row dispozicija-detaljno">
+    <div class="col-md-12 ">
+
+        <div class="col-xs-12 col-md-6">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title">Dispozicija </h3>
+                  @*  @Ajax.ActionLink("Štampaj", "Details",new { dispozicijaId = Model.DispozicijaId }, new AjaxOptions { UpdateTargetId = "dispozicija-info" }, new { @class = "btn btn-success pull-right" })*@
+                    <a class="btn btn-success " href="~/Reports/Dispozicija.aspx?dispozicijaId=@Model.DispozicijaId" target="_blank"><i class="glyphicon glyphicon-print"></i>Štampaj</a>
+                </div>
+                <div class="panel-body" id="dispozicija-info">
+                    <table class="table table-user-information" style="table-layout:fixed;">
+                        <tbody>
+                            <tr>
+                                <td><label>Račun broj</label</td>
+                                <td>@Model.RacunGuid.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Naziv klijenta</label></td>
+                                <td>@Model.NazivKlijenta</td>
+                            </tr>
+                            <tr>
+                                <td><label>Primalac</label></td>
+                                <td>@Model.Primalac</td>
+                            </tr>
+
+                            <tr>
+                                <td><label>Datum dispozicije</label></td>
+                                <td>@Model.DatumDispozicije.Value.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum ispostave</label></td>
+                                <td>@Model.DatumIspostave.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Cijena</label></td>
+                                <td>@Math.Round(Model.Cijena, 2)</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum placanja</label></td>
+                                <td>@Model.DatumPlacanja.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Broj instradacija</label></td>
+                                <td>@Model.BrojInstradacija</td>
+                            </tr>
+                            <tr>
+                                <td><label>Detaljno</label></td>
+                                <td style="word-wrap:break-word;">@Model.DodatneInformacije</td>
+                            </tr>
+
+
+                            <tr>
+                                <td><label>Adresa od</label></td>
+                                <td>@Model.AdresaOd, @Model.DrzavaOd</td>
+                            </tr>
+                            <tr>
+                                <td><label>Adresa od</label></td>
+                                <td>@Model.AdresaDo, @Model.DrzavaDo</td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="pull-right">
+                        @Ajax.ActionLink("Uredi", "Uredi", new { dispozicijaId = Model.DispozicijaId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "dispozicija-info" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Obriši", "Obrisi", new { dispozicijaId = Model.DispozicijaId }, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title" style="display:inline">Stavke</h3>
+
+                    @Ajax.ActionLink("+", "UrediStavku", "Dispozicija", new { id = 0, dispozicijaId = Model.DispozicijaId }, new AjaxOptions { UpdateTargetId = "stavke" }, new { @class = "btn btn-success pull-right" })
+
+
+
+                </div>
+                <div class="panel-body" id="stavke">
+                    @Html.Action("Stavke", "Dispozicija", new { id = Model.DispozicijaId })
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <div class="col-xs-12 col-md-12">
+            
+                <div class="x_panel">
+
+                    <div class="x_title">
+                        <h3 style="display:inline">Instradacije</h3>
+
+                        @Ajax.ActionLink("+", "Dodaj", "Instradacija", new { dispozicijaId = Model.DispozicijaId }, new AjaxOptions { UpdateTargetId = "instradacije" }, new { @class = "btn btn-success pull-right" })
+
+                   
+                     </div>
+
+                    <div class="panel-body" id="instradacije">
+                        @if (Model.Instradacije.Count > 0)
+                        {
+                            @Html.Action("DispozicijaInstradacije", "Instradacija", new { dispozicijaId = Model.DispozicijaId })
+                        }
+
+                        else
+                        {
+                            <h5 class="text-center">Trenutno nema instradacija.</h5>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+

@@ -1,0 +1,46 @@
+﻿@model TransportnoPreduzece.Web.Models.LoginVM
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/custom.min.css" rel="stylesheet">
+
+<div class="login">
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <img src="~/Content/images/small-truck.png">
+                @using (Html.BeginForm("Login","Account",FormMethod.Post))
+                {
+
+                    <h1>Cargo-Trans d.o.o.</h1>
+                    <div>
+                        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "Korisničko ime" })
+                        @Html.ValidationMessageFor(x=>x.Username)
+                    </div>
+                    <div>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Lozinka" })
+                        @Html.ValidationMessageFor(x=>x.Password)
+
+                    </div>
+                    <div class="form-group">
+                       <label style="font-family:'Roboto', 'Arial';color:#fff;text-shadow:none;vertical-align:middle;" class="pull-left">Zapamti me @Html.CheckBoxFor(x => x.RememberMe,new { Style = "vertical-align:middle;margin:0" })</label>
+
+
+                        <input type="submit" class="btn btn-default submit pull-right" value="Prijavi se" />
+                        
+                    </div>
+
+                    <div class="form-group">
+                        @Html.ValidationMessage("LogOnError")
+                    </div>
+                    <div class="clearfix"></div>
+
+                }
+            </section>
+        </div>
+
+    </div>
+</div>

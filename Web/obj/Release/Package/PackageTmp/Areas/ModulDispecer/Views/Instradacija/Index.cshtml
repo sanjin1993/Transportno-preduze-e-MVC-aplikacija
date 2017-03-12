@@ -1,0 +1,68 @@
+﻿@using PagedList
+@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model IPagedList<InstradacijeIndexVM>
+@{
+
+    List<SelectListItem> statusi = (List<SelectListItem>)ViewData["statusInstradacije"];
+
+    ViewBag.Title = "Index";
+}
+
+<div class="row instradacije">
+<div class="col-md-12">
+
+@using (Ajax.BeginForm(
+    new AjaxOptions
+    {
+        HttpMethod="get",
+        InsertionMode=InsertionMode.Replace,
+        UpdateTargetId="instradacije-output"
+
+    }
+    ))
+{
+
+    <div class="form-inline">
+        <div class="form-group col-xs-12 col-md-2">
+            <label>Datum od</label>
+            @Html.TextBox("datumOd", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-xs-12 col-md-2">
+            <label>Datum do</label>
+            @Html.TextBox("datumDo", null, new { @class = "form-control" })
+
+        </div>
+        <div class="form-group col-xs-12 col-md-3">
+            <label>Vozač</label>
+            @Html.TextBox("vozac", null, new { @class = "form-control" , @id="vozac"})
+        </div>
+
+        <div class="form-group col-xs-12 col-md-3">
+            <label>Status</label>
+            @Html.DropDownList("statusId",statusi,"Odaberite status", new {@class="form-control" })
+        </div>
+        
+        <div class="hidden-xs-12">
+            <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+        </div>
+
+        </div>
+
+
+
+}
+
+    
+
+</div>
+
+<div class="col-md-12" >
+
+
+  
+        @Html.Partial("_InstradacijeList", Model)
+
+
+
+</div>
+    </div>

@@ -1,0 +1,70 @@
+﻿@model TransportnoPreduzece.Web.Areas.ModulDispecer.Models.DispozicijaDetaljnoVM
+@using System.Web.Script.Serialization
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@using (Ajax.BeginForm("Uredi",new { dispozicijaId = Model.DispozicijaId, klijentId=Model.KlijentId }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateModel(data);" }))
+{
+    @Html.ValidationSummary(false)
+
+                    <div class="form-group">
+                        <label>Primalac</label>
+                        @Html.TextBoxFor(model => model.Primalac, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model=>model.Primalac)
+                    </div>
+                    <div class="form-group">
+                        <label>Datum ispostave</label>
+                        @Html.TextBoxFor(model => model.DatumIspostave, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DatumIspostave)
+                    </div>
+                    <div class="form-group">
+                     <label>Cijena</label>
+                     @Html.TextBoxFor(model => model.Cijena, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Cijena)
+                   </div>
+                    <div class="form-group">
+                        <label>Datum plaćanja</label>
+                        @Html.TextBoxFor(model => model.DatumPlacanja, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DatumPlacanja)
+                    </div>
+                     <div class="form-group">
+                        <label>Država od</label>
+                         @Html.DropDownListFor(model => model.DrzavaOdId, Model.DrzaveIndex, "Odaberite državu", new { @class = "form-control" })
+                         @Html.ValidationMessageFor(model => model.DrzavaOdId)
+                    </div>   
+                    <div class="form-group">
+                        <label>Adresa od</label>
+                        @Html.TextBoxFor(model => model.AdresaOd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AdresaOd)
+                    </div>
+                    <div class="form-group">
+                        <label>Država do</label>
+                        @Html.DropDownListFor(model => model.DrzavaDoId, Model.DrzaveIndex, "Odaberite državu", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DrzavaDoId)
+                    </div>
+                    <div class="form-group">
+                        <label>Adresa do</label>
+                        @Html.TextBoxFor(model => model.AdresaDo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AdresaDo)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dodatne informacije</label>
+                        @Html.TextAreaFor(model => model.DodatneInformacije, new { @class = "form-control" })
+                    </div>
+
+
+                    <p class="error-msg"></p>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary pull-right" value="Spremi" />
+                    </div>
+
+
+}
+
+
+
+

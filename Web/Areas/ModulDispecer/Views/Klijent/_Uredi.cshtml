@@ -1,0 +1,60 @@
+﻿@model TransportnoPreduzece.Web.Areas.ModulDispecer.Models.KlijentProfilVM
+
+
+              
+                  @using (Ajax.BeginForm("Uredi", new AjaxOptions { HttpMethod = "POST",  OnSuccess = "updateModel(data);" }))
+                  {
+                        @Html.ValidationSummary(false)
+                        <div class="form-group">
+                            <label>Naziv</label>
+                            @Html.TextBoxFor(model => model.Naziv, new { @class = "form-control " })
+                            @Html.ValidationMessageFor(model => model.Naziv)
+
+                        </div>
+                            <div class="form-group">
+                                <label>Drzava</label>
+                                @Html.DropDownListFor(model => model.DrzavaId, Model.Drzave, "Odaberite državu", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DrzavaId)
+                            </div>
+                            <div class="form-group">
+                                <label>Adresa</label>
+                                @Html.TextBoxFor(model => model.Adresa, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Adresa)
+                            </div>
+
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Telefon)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>ID Broj</label>
+                                @Html.TextBoxFor(model => model.IDBroj, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IDBroj)
+                            </div>
+                            <div class="form-group">
+                                <label>Fax</label>
+                                @Html.TextBoxFor(model => model.Fax, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Fax)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mail</label>
+                                @Html.TextBoxFor(model => model.Mail, new { @class = "form-control" })
+
+                            </div>
+
+                            @Html.HiddenFor(model => model.KlijentId)
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary pull-right" value="Spremi" />
+                                </div>
+                                }
+
+
+
+
+

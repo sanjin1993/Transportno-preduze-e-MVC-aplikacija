@@ -1,0 +1,62 @@
+﻿@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@using PagedList.Mvc
+@using PagedList
+@model IPagedList<KlijentiIndexVM>
+   
+<div id="client-output">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled klijenata</h3>
+        </div>
+        <div class="x_content">
+            <table class="table table-hover ">
+                <thead>
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Mail</th>
+                        <th>Telefon</th>
+                        <th>Fax</th>
+                        <th>Adresa</th>
+                        <th>Drzava</th>
+                        <th>Posljednja dispozicija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (KlijentiIndexVM item in Model)
+            {
+
+                        <tr>
+                            <td>@Html.ActionLink(String.IsNullOrEmpty(item.Naziv) ? " " : item.Naziv, "Profil", new { klijentId = item.KlijentId })</td>
+                            <td>@Html.DisplayFor(modelItem => item.Mail)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Telefon)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Fax)</td>
+
+                            <td>@Html.DisplayFor(modelItem => item.Adresa)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Drzava)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PosljednjaDispozicija)</td>
+
+
+
+                        </tr>
+
+
+                    }
+
+
+
+
+                </tbody>
+
+
+            </table>
+
+
+            <div class="paged-list" data-otf-target="#client-output">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.PageNumbersOnly)
+
+            </div>
+
+        </div>
+    </div>
+</div>

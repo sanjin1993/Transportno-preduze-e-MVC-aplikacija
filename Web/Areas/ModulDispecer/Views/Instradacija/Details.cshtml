@@ -1,0 +1,108 @@
+﻿@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model InstradacijaDetaljnoVM
+@{
+    ViewBag.Title = "Profil";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3 class="x-title">Pregled vožnje za narudžbu @Model.DispozicijaInfo.RowGuid</h3>
+            </div>
+            
+            <div class="panel-body" id="instradacija-info">
+                <table class="table table-user-information">
+            
+                    <tbody>
+                        <tr>
+                            <td><label>Ime i prezime vozača</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.ImePrezime)</td>
+                        </tr>
+                        <tr>
+                            <td><label>Država od</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.DispozicijaInfo.DrzavaOd)</td>
+                        </tr>
+                        <tr>
+                            <td><label>Država do</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.DispozicijaInfo.DrzavaDo)</td>
+                        </tr>
+                       
+                        <tr>
+                            <td><label>Vozilo</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.Vozilo)</td>
+                        </tr>
+                        <tr>
+                            <td><label>Priključno vozilo</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.PrikljucnoVozilo)</td>
+                        </tr>
+                        <tr>
+                            <td><label>Status</label></td>
+                            <td>@Html.DisplayFor(modelItem => Model.Status)</td>
+
+                   
+
+
+
+
+                    </tbody>
+                </table>
+                <div class="buttons text-right">
+                    @Ajax.ActionLink("Uredi", "Uredi", new { instradacijaId = Model.InstradacijaId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "instradacija-info" }, new { @class = "btn btn-primary"} )
+                   
+                    @Html.ActionLink("Obriši", "Obrisi", new { instradacijaId = Model.InstradacijaId }, new { @class = "btn btn-danger" })
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-xs-12 col-md-6 troskovi">
+        <div class="x_panel">
+            <div class="x_title">
+                <h3 class="x-title">Troškovi</h3>
+            </div>
+
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tip troška</th>
+                            <th>Iznos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Troskovi)
+                        {
+
+
+                            <tr>
+                                <td>@Enum.GetName(typeof(InstradacijaDetaljnoVM.TipTroska),item.TipTroskaId)</td>
+                                <td>@item.Ukupno.ToString("0.00") KM</td>
+                </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Ukupno</th>
+                            <td>@Model.Troskovi.ToList().Sum(x => x.Ukupno)</td>
+                        </tr>
+                    </tfoot>
+
+
+                </table>
+                </div>
+            </div>
+
+
+            </div>
+
+
+        </div>

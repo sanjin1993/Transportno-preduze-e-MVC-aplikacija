@@ -1,0 +1,17 @@
+c:\users\zek\documents\visual studio 2015\Projects\TransportnoPreduzece\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+c:\users\zek\documents\visual studio 2015\Projects\TransportnoPreduzece\Data\obj\Debug\Data.dll
+c:\users\zek\documents\visual studio 2015\Projects\TransportnoPreduzece\Data\obj\Debug\Data.pdb
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Data.dll.config
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Data.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Data.pdb
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\EntityFramework.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\EntityFramework.SqlServer.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\EntityFramework.xml
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\EntityFramework.SqlServer.xml
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\Data.dll.config
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\Data.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\Data.pdb
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\EntityFramework.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\EntityFramework.xml
+C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin\Debug\EntityFramework.SqlServer.xml
