@@ -12,6 +12,8 @@
     <form id="form1" runat="server">
         <div>
             <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" Width="100%" Height="842"  WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
+                 <LocalReport ReportPath="Reports\Vozilo.rdlc">
+            </LocalReport>
             </rsweb:ReportViewer>
         </div>
         <asp:ScriptManager ID="ScriptManager1" runat="server">

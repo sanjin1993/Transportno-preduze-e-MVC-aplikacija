@@ -11,7 +11,10 @@
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <rsweb:reportviewer ID="ReportViewer1" runat="server" width="100%"></rsweb:reportviewer>
+            <rsweb:reportviewer ID="ReportViewer1" runat="server" width="100%">
+                 <LocalReport ReportPath="Reports\Instradacija.rdlc">
+            </LocalReport>
+            </rsweb:reportviewer>
     </form>
 </body>
 </html>
