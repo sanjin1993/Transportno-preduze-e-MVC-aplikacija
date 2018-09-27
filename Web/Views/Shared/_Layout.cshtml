@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TransportnoPreduzece.Web.Controllers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,29 +32,29 @@
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
+
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/ModulDispecer/Dispozicija" class="site_title"><img src="~/Content/images/small-truck.png" width="50" height="50"> Cargo-Trans</a>
+                        <a href="/ModulLogistika/Vozilo" class="site_title"><img src="~/Content/images/small-truck.png" width="50" height="50"> Cargo-Trans</a>
                     </div>
+
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
-                  
                     <!-- /menu profile quick info -->
                     <br />
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                        
+
                             <ul class="nav side-menu">
-                               
-                                
+
                                 <li>
                                     <a><i class="glyphicon glyphicon-user"></i> Klijenti <span class="fa fa-chevron-down"></span> </a>
                                     <ul class="nav child_menu">
                                         <li><a href="@Url.Content("~/ModulDispecer/Klijent")">Klijenti</a></li>
                                         <li><a href="@Url.Content("~/ModulDispecer/Klijent/Dodaj")">Novi klijent</a></li>
-                                                                          </ul>
+                                    </ul>
                                 </li>
-                                
+
                                 <li>
                                     <a><i class="glyphicon glyphicon-shopping-cart"></i> Dispozicije <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
@@ -61,22 +62,14 @@
                                         <li><a href="@Url.Content("~/ModulDispecer/Dispozicija/Dodaj")">Nova dispozicija</a></li>
                                     </ul>
                                 </li>
-
                                 
-                                 
                                 <li>
-                                    <a  href="@Url.Content("~/ModulDispecer/Instradacija")"><i class="glyphicon glyphicon-road"></i> Instradacije  </a>
-                                    </li>
+                                    <a href="@Url.Content("~/ModulDispecer/Instradacija")"><i class="glyphicon glyphicon-road"></i> Instradacije </a>
+                                </li>
 
-
-
-
-
-
-
-</ul>
+                            </ul>
                         </div>
-                        
+
                     </div>
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
@@ -105,14 +98,14 @@
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
                         <ul class="nav navbar-nav navbar-right">
-                            <li >
-                               
-                               
-                                <a  data-placement="top" href="/Account/LogOff" >
+                            <li>
+
+
+                                <a data-placement="top" href="/Account/LogOff">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Odjavi se
                                 </a>
                             </li>
-                         
+
                         </ul>
                     </nav>
                 </div>
@@ -121,10 +114,10 @@
             <!-- page content -->
             <div class="right_col" role="main">
                 <!-- top tiles -->
-                
+
                 @RenderBody()
                 <!-- /top tiles -->
-               
+
             </div>
             <!-- /page content -->
             <!-- footer content -->
@@ -147,6 +140,6 @@
     <!-- FastClick -->
     <script src="~/Scripts/custom.min.js"></script>
     <script src="~/Scripts/custom.js?v=1.1"></script>
-   
+
 </body>
 </html>

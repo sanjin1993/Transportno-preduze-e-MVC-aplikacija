@@ -1,0 +1,130 @@
+﻿@model Web.Areas.ModulLogistika.Models.VoziloDetaljnoVM
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row vozilo-detaljno">
+    <div class="col-md-12 ">
+        <div class="col-xs-12 col-md-6">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title">Vozilo </h3>
+                    <a class="btn btn-success " href="~/Reports/Vozilo.aspx?voziloId=@Model.voziloId" target="_blank"><i class="glyphicon glyphicon-print"></i>Štampaj</a>
+                </div>
+                <div class="panel-body" id="vozilo-info">
+                    <table class="table table-user-information" style="table-layout:fixed;">
+                        <tbody>
+                        <tr>
+                            <td><label>Broj sasije</label></td>
+                            <td>@Model.brojSasije</td>
+                        </tr>
+                        <tr>
+                            <td><label>Registracijske oznake</label></td>
+                            <td>@Model.regOznake</td>
+                        </tr>
+                        <tr>
+                            <td><label>Proizvodjac</label></td>
+                            <td>@Model.proizvodjac</td>
+                        </tr>
+                        <tr>
+                            <td><label>Model</label></td>
+                            <td>@Model.model</td>
+                        </tr>
+                        <tr>
+                            <td><label>Datum registracije</label></td>
+                            <td>@Model.datumRegistracije.Value.ToString()</td>
+                        </tr>
+                        <tr>
+                            <td><label>Status Vozila</label></td>
+                            <td>@Model.statusVozila</td>
+                        </tr>
+                        <tr>
+                            <td><label>Tip Vozila</label></td>
+                            <td>@Model.tipVozila</td>
+                        </tr>
+                        <tr>
+                            <td><label>Cijena</label></td>
+                            <td>@Math.Round(Model.Cijena, 2)</td>
+                        </tr>
+                        <tr>
+                            <td><label>Kilometraza</label></td>
+                            <td>@Model.Kilometraza</td>
+                        </tr>
+                        <tr>
+                            <td><label>Nosivost</label></td>
+                            <td>@Model.Nosivost</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="pull-right">
+                        @Ajax.ActionLink("Uredi", "Uredi", new { voziloID = Model.voziloId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "vozilo-info" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Obriši", "Obrisi", new { voziloID = Model.voziloId }, new { @class = "btn btn-danger" , onclick= "return confirm('Jeste li sigurni da zelite izbrisati vozilo?');" }  )
+                        @Ajax.ActionLink("Produži registraciju", "Produzi", new { voziloID = Model.voziloId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "vozilo-info" }, new { @class = "btn btn-warning" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+
+        <div class="col-xs-12 col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title" style="display:inline">Odrzavanja</h3>
+
+                    @Ajax.ActionLink("+", "UrediOdrzavanje", "Vozilo", new { id = 0, voziloID = Model.voziloId }, new AjaxOptions { UpdateTargetId = "odrzavanja" }, new { @class = "btn btn-success pull-right" })
+
+                </div>
+                <div class="panel-body" id="odrzavanja">
+                    @Html.Action("OdrzavanjaVozila", "Vozilo", new { id = Model.voziloId })
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-12">
+
+            <div class="x_panel">
+
+                <div class="x_title">
+                    <h3 style="display:inline">Instradacije</h3>
+                </div>
+
+                <div class="panel-body" id="instradacije">
+                    @if (Model.Instradacije.Count == 0)
+                    {
+                        <h5 class="text-center">Trenutno nema instradacija.</h5>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $.get("@Url.Action("InstradacijeVozila", "Vozilo", new {voziloID = Model.voziloId})", function (data) {
+            $("#instradacije").html(data);
+        });
+
+        @*$(".btnLock").click(function () {
+            var id = @Model.Uputnica.UputnicaId;
+            $.ajax({
+                url: "@Url.Action("ZavrsiUnos", "Uputnica")",
+                type: "GET",
+                data: { uputnicaId: id },
+                success: function (result) { 
+                    //$("#Uputnica_DatumRezultata").val(@DateTime.Now);
+                    $("#instradacije").html(result);
+                }
+            });
+        });*@
+    });
+</script>

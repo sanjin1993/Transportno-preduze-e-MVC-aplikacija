@@ -1,0 +1,43 @@
+﻿@model List<Web.Areas.ModulLogistika.Models.OdrzavanjeVM>
+@using Web.Areas.ModulLogistika.Models
+
+@{
+    Layout = null;
+    int prikljucnoId = (int) ViewData["prikljucnoId"];
+}
+<div id="odrzavanja-output">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Kilometraza</th>
+                <th>Troskovi</th>
+                <th>Tip Odrzavanja</th>
+                <th>Dodano prikljucno</th>
+                <th >    Dodaj/Ukloni prikljucno->odrzavanju</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            @foreach (OdrzavanjeVM item in Model)
+             {
+                 <tr>
+                     <td>@item.datum.ToShortDateString()</td>
+                     <td>@item.kilometraza</td>
+                     <td>@item.troskovi</td>
+                     <td>@item.tipOdrzavanja</td>
+                     <td>@item.priljucno</td>
+                     @if (item.priljucno == "da")
+                     {
+                         <td class="text-center"> @Ajax.ActionLink(((char) 160).ToString(), "UkloniPrikljucnoSaOdrzavanja", "PrikljucnaVozila", new {id = item.odrzavanjeId, prikljucnoid = prikljucnoId}, new AjaxOptions {UpdateTargetId = "prikljucnaVozilaodrzavanja", HttpMethod = "post", Confirm = "Sigurno želite skloniti prikljucno vozilo od odrzavanja?"}, new {@class = "glyphicon glyphicon-minus-sign"})</td>
+                     }
+                     else
+                     {
+                         <td class="text-center">@Ajax.ActionLink(((char) 160).ToString(), "DodajPrikljucnoOdrzavanju", "PrikljucnaVozila", new {id = item.odrzavanjeId, prikljucnoid = prikljucnoId}, new AjaxOptions {UpdateTargetId = "prikljucnaVozilaodrzavanja", HttpMethod = "get"}, new {@class = "glyphicon glyphicon-plus-sign"})</td>
+                     }
+                 </tr>
+             }
+        </tbody>
+    </table>
+</div>

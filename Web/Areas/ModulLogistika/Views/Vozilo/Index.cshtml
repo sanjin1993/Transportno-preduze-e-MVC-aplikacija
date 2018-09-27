@@ -1,0 +1,76 @@
+﻿@using PagedList
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<VozilaIndexVM>
+@using TransportnoPreduzece.Data.Models
+@{
+    ViewBag.Title = "Vozila";
+    List<SelectListItem> statusi = (List<SelectListItem>)ViewData["statusVozila"];
+    List<SelectListItem> tipovi = (List<SelectListItem>)ViewData["tipVozila"];
+}
+
+
+
+<div class="row vozila">
+    <div class="col-md-12">
+
+
+        @using (Ajax.BeginForm(
+            new AjaxOptions
+            {
+                HttpMethod = "get",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "vozila-output"
+
+            }
+            ))
+        {
+
+            <div class="form-inline">
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Datum do registracije</label>
+                    @Html.TextBox("datumRegistracije", null, new { @class = "form-control date-picker", @id = "datumRegistracije" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Broj registracije</label>
+                    @Html.TextBox("brojReg", null, new {@class = "form-control"})
+                </div>
+                
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Tip vozila</label>
+                    @Html.DropDownList("tipVozilaId", tipovi, "Odaberite tip vozila", new {@class="form-control", onchange = @"form.submit();" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Status vozila</label>
+                    @Html.DropDownList("statusVozilaId", statusi, "Odaberite status vozila", new {@class="form-control" , onchange=@"form.submit();"} )
+                </div>
+
+                <div class="hidden-xs-12">
+                    <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+                </div>
+            </div>
+
+
+        }
+
+
+    </div>
+
+    <div class="col-md-12">
+        <br/>
+        @Html.Partial("_VozilaList", Model)
+    </div>
+   
+</div>
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+</script>

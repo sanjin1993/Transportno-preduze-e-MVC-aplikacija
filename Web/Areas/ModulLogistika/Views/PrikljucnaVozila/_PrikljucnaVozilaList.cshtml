@@ -1,0 +1,55 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<PrikljucnaVozilaIndexVM>
+
+@{
+    int brojVozila = (int)ViewData["brojVozila"];
+}
+
+<div id="priklljucnavozila-output">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled prikljucnih vozila</h3>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-hover ">
+                <thead>
+                    <tr class="headings">
+                        <th>Broj sasije</th>
+                        <th>Broj osovina</th>
+                        <th>Registracijske oznake</th>
+                        <th>Datum registracije</th>
+                        <th>Status vozila</th>
+                        <th>Tip vozila</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (PrikljucnaVozilaIndexVM item in Model)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(item.brojSasije, "Details", new { prikljucnoVoziloID = item.prikljucnoVoziloId }, new { style = "color:blue;text-decoration:underline;text-decoration-color:blue" })</td>
+                            <td>@item.brojOsovina</td>
+                            <td>@item.regOznake </td>
+                            <td>@item.datumRegistracije.Value.ToShortDateString()</td>
+                            <td>@item.statusVozila</td>
+                            <td>@item.tipPrikljucnog</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="paged-list" data-otf-target="#priklljucnavozila-output">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {page}),
+                    PagedListRenderOptions.PageNumbersOnly)
+            </div>
+
+            <div class="form-group col-xs-12 col-md-3">
+                <label>Broj prikljucnih vozila : @brojVozila</label>
+            </div>
+
+        </div>
+    </div>
+</div>
+

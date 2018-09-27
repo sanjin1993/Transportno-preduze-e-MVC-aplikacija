@@ -72,6 +72,7 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Controllers
         {
 
             DispozicijaDetaljnoVM Model = new DispozicijaDetaljnoVM();
+            
             Model.TipKolicine = ctx.KolicinaTipovi.ToList();
             Model.Drzave = ctx.Drzave.ToList();
             Model.Klijenti = ctx.Klijenti.Select(
@@ -174,8 +175,7 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Controllers
                         Naziv=y.Naziv,
                         Kolicina=y.Kolicina,
                         KolicinaTipId=y.KolicinaTipId,
-                        StavkaId=y.StavkaId
-
+                        StavkaId=y.StavkaId  
                     }).ToList(),
                     Instradacije = x.Instradacije.ToList(),
                     DatumPlacanja = x.DatumPlacanja,
@@ -184,11 +184,6 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Controllers
                     AdresaDo=x.AdresaDo,
                     DrzavaOd=x.DrzavaOd.Naziv,
                     DrzavaDo=x.DrzavaDo.Naziv
-                   
-
-
-
-
 
                 }).FirstOrDefault();
             return View(Model);
@@ -372,7 +367,7 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Controllers
                         Value = y.KolicinaTipId.ToString(),
                         Text = y.Naziv
                     }).ToList();
-                    return View("DodajStavku", s);
+                    return View("_DodajStavku", s);
                 }
             }
            

@@ -31,8 +31,6 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Models
         [Required(ErrorMessage = "Adresa do je obavezno polje.")]
         public string AdresaDo { get; set; }
 
-       
-
         public List<KolicinaTip> TipKolicine { get; set; }
         public List<StavkaVM> Stavke { get; set; }
         public List<Instradacija> Instradacije { get; set; }

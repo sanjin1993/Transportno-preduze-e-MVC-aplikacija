@@ -23,27 +23,27 @@
                                             ))
         {
             
-                <div class="form-inline">
-                    <div class="form-group col-xs-12 col-md-3">
-                        <label>Klijent</label>
-                        @Html.TextBox("nazivKlijenta", null, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-xs-12 col-md-3">
-                        <label>Broj računa</label>
-                        @Html.TextBox("brojRacuna", null, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group col-xs-12 col-md-2">
-                        <label>Datum od</label>
-                        @Html.TextBox("datumOd", null, new { @class = "form-control hasDatepicker", @id="datumOd"})
-                    </div>
-                    <div class="form-group col-xs-12 col-md-2">
-                        <label>Datum do</label>
-                        @Html.TextBox("datumDo", null, new { @class = "form-control hasDatepicker", @id = "datumDo" })
-                    </div>
-                    <div class="hidden-xs-12">
-                        <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
-                    </div>
-                </div>
+        <div class="form-inline">
+            <div class="form-group col-xs-12 col-md-3">
+                <label>Klijent</label>
+                @Html.TextBox("nazivKlijenta", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-xs-12 col-md-3">
+                <label>Broj računa</label>
+                @Html.TextBox("brojRacuna", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-xs-12 col-md-2">
+                <label>Datum od</label>
+                @Html.TextBox("datumOd", null, new { @class = "form-control hasDatepicker", @id = "datumOd" })
+            </div>
+            <div class="form-group col-xs-12 col-md-2">
+                <label>Datum do</label>
+                @Html.TextBox("datumDo", null, new { @class = "form-control hasDatepicker", @id = "datumDo" })
+            </div>
+            <div class="hidden-xs-12">
+                <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+            </div>
+        </div>
            
           
         }

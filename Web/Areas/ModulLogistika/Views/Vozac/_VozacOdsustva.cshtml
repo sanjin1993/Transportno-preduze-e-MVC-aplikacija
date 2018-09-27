@@ -1,0 +1,29 @@
+﻿@using Web.Areas.ModulLogistika.Models
+@model List<Web.Areas.ModulLogistika.Models.VozacOdsustvaVM>
+
+@{ 
+    Layout = null;
+}
+<table>
+    <thead>
+    <tr>
+        <th>Datum od</th>
+        <th>Datum do</th>
+        <th>Tip odsustva</th>
+    </tr>
+        
+    </thead>
+
+    <tbody>
+    @foreach (VozacOdsustvaVM item in Model)
+    {
+        <tr>
+            <td>@item.datumOd.ToShortDateString()</td>
+            <td>@item.datumDo.ToShortDateString()</td>
+            <td>@item.tipOdsustva</td>
+            <td class="text-right">@Ajax.ActionLink(((char)160).ToString(), "UrediOdsustvo", "Vozac", new { id = item.odsustvoId }, new AjaxOptions { UpdateTargetId = "odsustva", HttpMethod = "get" }, new { @class = "glyphicon glyphicon-edit" })</td>
+            <td class="text-right"> @Ajax.ActionLink(((char)160).ToString(), "ObrisiOdsustvo", "Vozac", new { id = item.odsustvoId }, new AjaxOptions { UpdateTargetId = "odsustva", HttpMethod = "post", Confirm = "Sigurno želite obrisati odsustvo?" }, new { @class = "glyphicon glyphicon-minus-sign" })</td>
+        </tr>
+    }
+    </tbody>
+</table>

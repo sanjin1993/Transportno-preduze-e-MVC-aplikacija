@@ -1,0 +1,54 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<VozilaIndexVM>
+
+@{
+    int brojVozila = (int)ViewData["brojVozila"];
+}
+
+<div id="vozila-output">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled vozila</h3>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-hover ">
+                <thead>
+                    <tr class="headings">
+                        <th>Broj sasije</th>
+                        <th>Registracijske oznake</th>
+                        <th>Proizvodjac</th>
+                        <th>Datum registracije</th>
+                        <th>Status vozila</th>
+                        <th>Tip vozila</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (VozilaIndexVM item in Model)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(item.brojSasije, "Details", new { VoziloId = item.voziloId }, new { style = "color:blue;text-decoration:underline;text-decoration-color:blue" })</td>
+                            <td>@item.regOznake </td>
+                            <td>@item.proizvodjac </td>
+                            <td>@item.datumRegistracije.Value.ToShortDateString()</td>
+                            <td>@item.statusVozila</td>
+                            <td>@item.tipVozila</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="paged-list" data-otf-target="#vozila-output">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {page}),
+                    PagedListRenderOptions.PageNumbersOnly)
+            </div>
+            
+            <div class="form-group col-xs-12 col-md-3">
+                <label>Broj vozila : @brojVozila</label>
+            </div>
+
+        </div>
+    </div>
+</div>

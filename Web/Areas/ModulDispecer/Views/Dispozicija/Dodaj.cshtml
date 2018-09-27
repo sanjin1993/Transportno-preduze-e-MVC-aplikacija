@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label>Klijent</label>
                         <select data-bind="options: Klijenti, optionsText:'Naziv',optionsValue:'KlijentId',value:KlijentId,optionsCaption:'Odaberite klijenta'" class="form-control"></select>
-                        
+
                     </div>
                     <div class="form-group">
                         <label>Cijena</label>
@@ -32,16 +32,16 @@
 
                     <div class="form-group">
                         <label>Datum plaćanja</label>
-                        @Html.TextBoxFor(x=>x.DatumPlacanja,new { @class= "form-control", @data_bind = "value:DatumPlacanja" })
+                        @Html.TextBoxFor(x => x.DatumPlacanja, new { @class = "form-control", @data_bind = "value:DatumPlacanja" })
 
 
                     </div>
-                    
+
                     <div class="form-group">
                         <label>Datum ispostave</label>
                         <input data-bind="value:DatumIspostave" class="form-control" />
                     </div>
-                 
+
                     <div class="form-group">
                         <label>Primalac</label>
                         <input data-bind="value:Primalac" class="form-control" />
@@ -66,13 +66,13 @@
                         <label>Dodatne informacije</label>
                         <input data-bind="value:DodatneInformacije" class="form-control" name="DodatneInformacije" />
                     </div>
-                    <p class="error-msg" ></p>
+                    <p class="error-msg"></p>
                     <button class="btn btn-primary" data-bind="click:save">Spremi</button>
                 </div>
             </div>
 
-           
-            </div>
+
+        </div>
         <div class="col-sm-7 stavke">
             <div class="x_panel">
                 <div class="x_title">
@@ -90,16 +90,16 @@
                     <div class="form-group col-xs-11 col-md-5">
                         <label>Jedinica</label>
                         <select data-bind="options: TipKolicine, optionsText:'Naziv',optionsValue:'KolicinaTipId',value:KolicinaTipId,optionsCaption:'Odaberite tip'" class="form-control" name="KolicinaTip"></select>
-                        <a  class="btn btn-success pull-right" data-bind="click:addStavka">+</a>
-                        
+                        <a class="btn btn-success pull-right" data-bind="click:addStavka">+</a>
+
                     </div>
-                 
-                 
+
+
                 </div>
                 <div class="x_title">
                     <h3 class="x-title"></h3>
                 </div>
-                <div class="row" >
+                <div class="row">
                     <div class="col-md-10">
                         <table>
                             <tbody data-bind="foreach:Stavke">
@@ -113,15 +113,15 @@
                         </table>
                         <p id="stavke-error" class="text-center has-warning "></p>
                     </div>
-                   
-                </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-            <script>
+<script>
     var Model = new DispozicijaVM(@Html.Raw(data));
                 ko.applyBindings(Model);
                 clearForm();
-            </script>
+</script>

@@ -1,0 +1,121 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<PrikljucnaVozilaIndexVM>
+@{
+    ViewBag.Title = "PrikljucnaVozila";
+    List<SelectListItem> statusi = (List<SelectListItem>)ViewData["statusVozila"];
+    List<SelectListItem> tipoviPrikljucnih = (List<SelectListItem>)ViewData["tipVozila"];
+}
+
+
+
+<div class="row vozila">
+    <div class="col-md-12">
+
+
+        <form id="forma">
+
+            <div class="form-inline">
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Datum do registracije</label>
+                     @Html.TextBox("datumRegistracije", null, new {@class = "form-control date-picker", @id = "datumRegistracije"})
+                    @*<input type="datetime" class="form-control date-picker" id="datumRegistracije"  />*@
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Vozila sa osovinama do:</label>
+                     @Html.TextBox("brojOsovina", null, new { @class = "form-control", id = "brojOsovina" })
+                    @*<input type="number" class="form-control" id="brojOsovina"/>*@
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Tip vozila</label>
+                    @Html.DropDownList("tipPrikljucnogId", tipoviPrikljucnih, "Odaberite tip prikljucnog vozila", new { @class = "form-control", @id = "tipPrikljucnog" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Status vozila</label>
+                    @Html.DropDownList("statusVozilaId", statusi, "Odaberite status vozila", new { @class = "form-control", @id = "statusVozila" })
+                </div>
+
+                <div class="hidden-xs-12">
+                    <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="col-md-12">
+        @Html.Partial("_PrikljucnaVozilaList")
+    </div>
+
+</div>
+
+<script>
+    $(function() {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+
+    @*$(document).ready(function() {
+        //PrikljucnaVozilaSearchResult
+        $('btn-filtriraj').onclick(function () {
+            var datum = $("#datumRegistracije").val();
+            var broj = $("#brojOsovina").val();
+            var tip = $("#tipPrikljucnog").val();
+            var status = $("#statusVozila").val();
+            $.ajax({
+                url: @Url.Action("Index","PrikljucnaVozila"),
+                type: "GET",
+                data: { datumRegistracije: datum, brojOsovina: broj, tipPrikljucnogId: tip, statusVozilaId: status },
+                success: function (result) {
+                    alert("Usao sam u success");
+                    var html = '';
+                    $.each(result,
+                        function (key, item) {
+                            html += '<tr>';
+                            html += '<td><a href="#" onclick="return getbyID(' + item.prikljucnoVoziloId + ')">Detaljiii</a> </td>';
+                            html += '<td>' + item.brojOsovina + '</td>';
+                            html += '<td>' + item.regOznake + '</td>';
+                            html += '<td>' + item.datumRegistracije.Value.ToShortDateString() + '</td>';
+                            html += '<td>' + item.statusVozila + '</td>';
+                            html += '<td>' + item.tipPrikljucnog + '</td>';
+                            html += '</tr>';
+                        });
+                    $('#priklljucnavozila-output').html(html);
+                },
+                error: function(errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        });
+    });*@
+
+    @*$(document).ready(function() {
+        $(':input').on('input',function(e) {
+                var kilometraz = $("#txtkilometraza").val();
+                var trosak = $("#txtTroskovi").val();
+                $.ajax({
+                    url: "@Url.Action("OdrzavanjaVozila", "Vozilo")",
+                type: 'GET',
+                data: { id: @voziloID, kilometraza: kilometraz, troskovi : trosak},
+                success: function (data) {
+                    if (data != "" || data != null) {
+                        $("#odrzavanja-output").html(data);
+                    }
+                    else {
+                        $("#txtkilometraza").append("<p>Error</p>");
+                    }
+                }
+            });
+        });
+    });*@
+
+</script>

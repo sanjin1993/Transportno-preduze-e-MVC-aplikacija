@@ -1,0 +1,33 @@
+﻿@model List<Web.Areas.ModulLogistika.Models.OdrzavanjeVM>
+@using Web.Areas.ModulLogistika.Models
+
+@{
+    Layout = null;
+}
+<div id="odrzavanja-output">
+    <table>
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Kilometraza</th>
+                <th>Troskovi</th>
+                <th>Tip Odrzavanja</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            @foreach (OdrzavanjeVM item in Model)
+            {
+                <tr>
+                    <td>@item.datum.ToShortDateString()</td>
+                    <td>@item.kilometraza</td>
+                    <td>@item.troskovi</td>
+                    <td>@item.tipOdrzavanja</td>
+                    <td class="text-right">@Ajax.ActionLink(((char)160).ToString(), "UrediOdrzavanje", "Vozilo", new { id = item.odrzavanjeId }, new AjaxOptions { UpdateTargetId = "odrzavanja", HttpMethod = "get" }, new { @class = "glyphicon glyphicon-edit" })</td>
+                    <td class="text-right"> @Ajax.ActionLink(((char)160).ToString(), "ObrisiOdrzavanje", "Vozilo", new { id = item.odrzavanjeId }, new AjaxOptions { UpdateTargetId = "odrzavanja", HttpMethod = "post", Confirm = "Sigurno želite obrisati odrzavanje?" }, new { @class = "glyphicon glyphicon-minus-sign" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

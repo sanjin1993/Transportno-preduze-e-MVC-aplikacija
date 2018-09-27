@@ -1,0 +1,42 @@
+﻿
+@using PagedList.Mvc
+@using PagedList
+
+@using TransportnoPreduzece.Web.Areas.ModulDispecer.Models
+@model List<InstradacijeIndexVM>
+
+@{
+    Layout = null;
+}
+<div class="x_content">
+
+    <table class="table table-hover ">
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Ime i prezime vozača</th>
+            <th>Vozilo</th>
+            <th>Priključno vozilo</th>
+            <th>Status</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (InstradacijeIndexVM item in Model)
+        {
+
+            <tr>
+
+                <td>@item.Datum</td>
+                <td>@item.ImePrezime</td>
+                <td>@item.Vozilo</td>
+                <td>@item.PrikljucnoVozilo</td>
+                <td>@item.Status</td>
+            </tr>
+
+        }
+        </tbody>
+    </table>
+</div>
+

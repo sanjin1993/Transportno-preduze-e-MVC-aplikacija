@@ -1,0 +1,83 @@
+﻿@model Web.Areas.ModulLogistika.Models.VozacDetaljnoVM
+
+
+@using (Html.BeginForm("Dodaj", "Vozac", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Ime</label>
+        @Html.TextBoxFor(model => model.ime, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.ime, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Prezime</label>
+        @Html.TextBoxFor(model => model.prezime, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.prezime, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Broj vozacke</label>
+        @Html.TextBoxFor(model => model.brojVozacke, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.brojVozacke, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Datum vazenja vozacke</label>
+        @Html.TextBoxFor(model => model.datumVazenjaVozacke, new { @class = "form-control date-picker", @Value = " " })
+        @Html.ValidationMessageFor(model => model.datumVazenjaVozacke, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>ADR licenca</label>
+        @Html.TextBoxFor(model => model.ADRlicenca, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.ADRlicenca, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Datum ljekarskog</label>
+        @Html.TextBoxFor(model => model.datumLjekarskog, new { @class = "form-control date-picker", @Value = " " })
+        @Html.ValidationMessageFor(model => model.datumLjekarskog, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>JMBG</label>
+        @Html.TextBoxFor(model => model.JMBG, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.JMBG, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Datum zaposlenja</label>
+        @Html.TextBoxFor(model => model.datumZaposlenja, new { @class = "form-control date-picker", @Value = " " })
+        @Html.ValidationMessageFor(model => model.datumZaposlenja, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.Email, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Status vozila</label>
+        @Html.DropDownListFor(model => model.statusId, Model.statusi, "Odaberite Status vozača", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.statusId, null, new { style = "color:red" })
+    </div>
+
+    <p class="error-msg"></p>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Spremi" />
+    </div>
+}
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+</script>
+
+
+
+

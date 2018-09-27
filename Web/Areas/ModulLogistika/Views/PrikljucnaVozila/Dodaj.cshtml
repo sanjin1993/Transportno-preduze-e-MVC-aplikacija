@@ -1,0 +1,86 @@
+﻿@model Web.Areas.ModulLogistika.Models.PrikljucnoVoziloDetaljnoVM
+
+
+@using (Html.BeginForm("Dodaj", "PrikljucnaVozila", FormMethod.Post))
+{
+    @Html.ValidationSummary(false)
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Broj Šasije</label>
+        @Html.TextBoxFor(model => model.brojSasije, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.brojSasije, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Registracijske oznake</label>
+        @Html.TextBoxFor(model => model.regOznake, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.regOznake, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Broj osovina</label>
+        @Html.TextBoxFor(model => model.brojOsovina, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.brojOsovina, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Cijena</label>
+        @Html.TextBoxFor(model => model.cijena, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.cijena, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Nosivost</label>
+        @Html.TextBoxFor(model => model.nosivost, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.nosivost, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Visina</label>
+        @Html.TextBoxFor(model => model.visina, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.visina, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Duzina</label>
+        @Html.TextBoxFor(model => model.duzina, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.duzina, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Datum registracije</label>
+        @Html.TextBoxFor(model => model.datumRegistracije, new { @class = "form-control date-picker", @Value = " " })
+        @Html.ValidationMessageFor(model => model.datumRegistracije, null, new { style = "color:red" })
+    </div>
+    <div class="form-group">
+        <label>Tezina</label>
+        @Html.TextBoxFor(model => model.tezina, new { @class = "form-control", @Value = " " })
+        @Html.ValidationMessageFor(model => model.tezina, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Tip prikljucnog vozila</label>
+        @Html.DropDownListFor(model => model.tipPrikljucnogVozilaId, Model.TipoviPrikljcnogVozila, "Odaberite tip prikljucnog vozila", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.tipPrikljucnogVozilaId, null, new { style = "color:red" })
+    </div>
+
+    <div class="form-group">
+        <label>Status vozila</label>
+        @Html.DropDownListFor(model => model.statusVozilaId, Model.StatusiVozila, "Odaberite Status vozila", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.statusVozilaId, null, new { style = "color:red" })
+    </div>
+
+    <p class="error-msg"></p>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Spremi" />
+    </div>
+}
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+</script>
+
+
+
+

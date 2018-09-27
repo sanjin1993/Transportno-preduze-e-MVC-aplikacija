@@ -20,13 +20,13 @@ namespace TransportnoPreduzece.Web.Areas.ModulDispecer.Controllers
         public ActionResult Index(string nazivKlijenta, int? drzavaId, string telefon, string adresa,string currentFilter, int page=1)
         {
 
+            
+        
 
 
 
 
-
-
-            var Model= ctx.Klijenti
+            var Model = ctx.Klijenti
             .Where(x => (String.IsNullOrEmpty(nazivKlijenta) || x.Naziv.Contains(nazivKlijenta)) &&
                         (!drzavaId.HasValue || x.DrzavaId == drzavaId) &&
                         (String.IsNullOrEmpty(telefon) || x.Telefon.Contains(telefon)) &&

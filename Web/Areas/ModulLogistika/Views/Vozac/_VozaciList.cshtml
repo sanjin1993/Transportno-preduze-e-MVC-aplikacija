@@ -1,0 +1,65 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<VozacIndexVM>
+
+@{
+    int brojVozaca = (int)ViewData["brojVozaca"];
+}
+
+<div id="vozaci-output">
+    <div class="x_panel">
+        <div class="x_title">
+            <h3>Pregled vozaca</h3>
+        </div>
+        <div class="x_content">
+
+            <table class="table table-hover ">
+                <thead>
+                    <tr class="headings">
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Status vozaca</th>
+                        <th>Broj vozacke</th>
+                        <th>Datum vazenja vozacke</th>
+                        <th>Datum raskida</th>
+                        <th>Detalji</th>
+                    </tr>
+
+                </thead>
+                <tbody id="dataFilter">
+                    @foreach (VozacIndexVM item in Model)
+                    {
+                        <tr>
+                            <td>@item.ime </td>
+                            <td>@item.prezime </td>
+                            <td>@item.statusVozaca</td>
+                            <td>@item.brojVozacke</td>
+                            <td>@item.datumVazenjaVozacke.ToShortDateString()</td>
+                            @if (item.datumRaskida != null)
+                            {
+                            <td>@item.datumRaskida.Value.ToShortDateString()</td>
+                            }
+                            else
+                            {
+                                <td>Radi</td>
+                            }
+                            <td>@Html.ActionLink(" ", "Detalji", new { vozacID = item.vozacId }, new { style = "color:blue;text-decoration:underline;text-decoration-color:blue" , @class = "glyphicon glyphicon-new-window" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="paged-list" data-otf-target="#vozaci-output">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {page}),
+                    PagedListRenderOptions.PageNumbersOnly)
+            </div>
+            
+            <div class="form-group col-xs-12 col-md-3">
+                <label>Broj vozaca : @brojVozaca</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

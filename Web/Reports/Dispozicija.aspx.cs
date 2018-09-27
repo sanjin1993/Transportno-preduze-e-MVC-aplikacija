@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Reporting.WebForms;
+using Report = Microsoft.Reporting.WinForms.Report;
+
 namespace TransportnoPreduzece.Web.Reports
 {
     public partial class WebForm1 : System.Web.UI.Page
@@ -22,18 +24,17 @@ namespace TransportnoPreduzece.Web.Reports
                 var Info = DispozicijaRM.GetDispozicijaInfo(dispozicijaId);
                 ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Info", Info));
 
-
                 var Primalac = DispozicijaRM.GetPrimalacInfo(dispozicijaId);
                 ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Primalac", Primalac));
 
                 var Posiljalac = DispozicijaRM.GetPosiljalacInfo(dispozicijaId);
                 ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Posiljalac", Posiljalac));
 
+
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath("") + "/Dispozicija.rdlc";
                 ReportViewer1.DataBind();
                 ReportViewer1.LocalReport.Refresh();
             }
-
         }
     }
 }

@@ -8,7 +8,7 @@ namespace TransportnoPreduzece.Data.Models
     public class NabavkaStavka
     {
         public int Id { get; set; }
-        public int Naziv { get; set; }
+        public string Naziv { get; set; }
         public float Cijena { get; set; }
 
         public int NabavkaId { get; set; }

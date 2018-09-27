@@ -1,0 +1,68 @@
+﻿@using System.IdentityModel.Protocols.WSTrust
+@using PagedList
+@using PagedList.Mvc
+@using Web.Areas.ModulLogistika.Models
+@model IPagedList<VozacIndexVM>
+
+@{
+    ViewBag.Title = "Vozila";
+    List<SelectListItem> statusi = (List<SelectListItem>)ViewData["statusVozaca"];
+}
+<div class="row vozila">
+    <div class="col-md-12">
+
+        @using (Ajax.BeginForm(
+            new AjaxOptions
+            {
+                HttpMethod = "get",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "vozaci-output"
+
+            }
+            ))
+        {
+            <div class="form-inline">
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Datum od</label>
+                    @Html.TextBox("datumOd", null, new { @class = "form-control date-picker", @id = "datumOd" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-2">
+                    <label>Datum do</label>
+                    @Html.TextBox("datumDo", null, new { @class = "form-control date-picker", @id = "datumDo" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Broj vozacke</label>
+                    @Html.TextBox("brojVozacke", null, new { @class = "form-control", @id = "brojVoz" })
+                </div>
+
+                <div class="form-group col-xs-12 col-md-3">
+                    <label>Status vozila</label>
+                    @Html.DropDownList("statusId", statusi, "Odaberite status vozaca", new { @class = "form-control", @id = "status" })
+                </div>
+
+                <div class="hidden-xs-12">
+                    <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-12">
+        <br/>
+        @Html.Partial("_VozaciList", Model)
+    </div>
+
+</div>
+
+<script>
+        $(function() {
+            $('.date-picker').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                format: 'dd.mm.yyyy',
+                startDate: "+2d"
+            });
+        });
+</script>

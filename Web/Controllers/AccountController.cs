@@ -5,12 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TransportnoPreduzece.Data.DAL;
+using TransportnoPreduzece.Data.Models;
 using TransportnoPreduzece.Web.Models;
 
 namespace TransportnoPreduzece.Web.Controllers
 {
     public class AccountController : Controller
     {
+
+        public static Zaposlenik objUser;
+        
+
         // GET: Login
         public ActionResult Index()
         {
@@ -32,7 +37,9 @@ namespace TransportnoPreduzece.Web.Controllers
             {
                 using (TPContext objContext = new TPContext())
                 {
-                    var objUser = objContext.Zaposlenici.FirstOrDefault(x => x.Email == model.Username && x.Password == model.Password);
+                    objUser = objContext.Zaposlenici.FirstOrDefault(x =>
+                        x.Email == model.Username && x.Password == model.Password);
+                    
                     if (objUser == null)
                     {
                         ModelState.AddModelError("LogOnError", "Korisničko ime ili šifra su neispravni.");
@@ -54,8 +61,10 @@ namespace TransportnoPreduzece.Web.Controllers
                             if (roles[0] == "dispečer") { 
                             return RedirectToAction("Index","Dispozicija",new { area = "ModulDispecer" });
                             }
-
-
+                            if(roles[0] == "logističar")
+                            {
+                                return RedirectToAction("Index", "Vozilo", new { area = "ModulLogistika" });
+                            }
                         }
                     }
                 }

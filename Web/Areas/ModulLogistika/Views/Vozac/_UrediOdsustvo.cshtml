@@ -1,0 +1,50 @@
+﻿@model Web.Areas.ModulLogistika.Models.VozacOdsustvaVM
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("SnimiOdsustvo", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "odsustva" }))
+{
+
+    <div class="col-md-8 col-md-offset-2">
+
+        <div class="form-group">
+            <label>Datum od</label>
+            @Html.TextBoxFor(x => x.datumOd, new { @class = "form-control date-picker" })
+            @Html.ValidationMessageFor(x => x.datumOd)
+        </div>
+
+        <div class="form-group">
+            <label>Datum do</label>
+            @Html.TextBoxFor(x => x.datumDo, new { @class = "form-control date-picker" })
+            @Html.ValidationMessageFor(x => x.datumDo)
+        </div>
+
+        <div class="form-group">
+            <label>Benzinska pumpa</label>
+            @Html.DropDownListFor(x => x.tipId, Model.tipoviOdsustva, "Odaberite tip odsustva", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.tipId)
+        </div>
+
+        @Html.HiddenFor(x => x.odsustvoId)
+        @Html.HiddenFor(x => x.vozacId)
+        <input type="submit" value="Spremi" class="btn btn-primary pull-right" />
+
+    </div>
+}
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+</script>
+
+
+
+

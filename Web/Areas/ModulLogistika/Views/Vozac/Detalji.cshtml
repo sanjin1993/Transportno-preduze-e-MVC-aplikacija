@@ -1,0 +1,123 @@
+﻿@model Web.Areas.ModulLogistika.Models.VozacDetaljnoVM
+@{
+    ViewBag.Title = "Detaji";
+}
+
+<div class="row vozilo-detaljno">
+    <div class="col-md-12 ">
+        <div class="col-xs-12 col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title">Vozac </h3>
+                    <a class="btn btn-success " href="~/Reports/Vozac.aspx?vozacId=@Model.vozacId" target="_blank"><i class="glyphicon glyphicon-print"></i>Štampaj</a>
+                </div>
+                <div class="panel-body" id="vozac-info">
+                    <table class="table table-user-information" style="table-layout:fixed;">
+                        <tbody>
+                            <tr>
+                                <td><label>ADR licenca</label></td>
+                                <td>@Model.ADRlicenca</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum ljekarskog</label></td>
+                                <td>@Model.datumLjekarskog.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>JMBG</label></td>
+                                <td>@Model.JMBG</td>
+                            </tr>
+                            <tr>
+                                <td><label>Email</label></td>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum zaposlenja</label></td>
+                                <td>@Model.datumZaposlenja.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum vazenja vozacke</label></td>
+                                <td>@Model.datumVazenjaVozacke.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Broj Vozacke</label></td>
+                                <td>@Model.brojVozacke</td>
+                            </tr>
+                            <tr>
+                                <td><label>Prezime</label></td>
+                                <td>@Model.prezime</td>
+                            </tr>
+                            <tr>
+                                <td><label>Ime</label></td>
+                                <td>@Model.ime</td>
+                            </tr>
+                            <tr>
+                                <td><label>Status</label></td>
+                                <td>@Model.statusVozaca</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="pull-right">
+                        @Ajax.ActionLink("Uredi", "Uredi", new { vozacID = Model.vozacId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "vozac-info" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Obriši", "Obrisi", new { vozacID = Model.vozacId }, new { @class = "btn btn-danger", onclick = "return confirm('Jeste li sigurni da zelite izbrisati vozaca?');" })
+                        @if (!Model.datumRaskida.HasValue)
+                        {
+                            @Ajax.ActionLink("Raskid", "Raskid", new { vozacID = Model.vozacId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "vozac-info"}, new { @class = "btn btn-warning", onclick = "return confirm('Jeste li sigurni da zelite raskinuti radni odnos sa vozacem?');" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="x_panel">
+
+                <div class="x_title">
+                    <h3 class="x-title" style="display: inline">Kartice vozaca</h3>
+                    @Ajax.ActionLink("+", "UrediKarticu", "Vozac", new { id = 0, vozacID = Model.vozacId }, new AjaxOptions { UpdateTargetId = "kartice" }, new { @class = "btn btn-success pull-right" })
+                </div>
+
+                <div class="panel-body" id="kartice">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="x_panel">
+
+                <div class="x_title">
+                    <h3 class="x-title" style="display: inline">Odsustva vozaca</h3>
+                    @Ajax.ActionLink("+", "UrediOdsustvo", "Vozac", new { id = 0, vozacID = Model.vozacId }, new AjaxOptions { UpdateTargetId = "odsustva" }, new { @class = "btn btn-success pull-right" })
+                </div>
+
+                <div class="panel-body" id="odsustva">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $.ajax({
+            url: "@Url.Action("VozacKartice", "Vozac", new { vozacId = Model.vozacId})",
+            type: "GET",
+            success: function (data) {
+                $("#kartice").html(data);
+            }
+        });
+    });
+
+    $(function () {
+        $.ajax({
+            url: "@Url.Action("VozacOdsustva", "Vozac", new { vozacId = Model.vozacId})",
+            type: "GET",
+            success: function (data) {
+                $("#odsustva").html(data);
+            }
+        });
+    });
+</script>
+
+

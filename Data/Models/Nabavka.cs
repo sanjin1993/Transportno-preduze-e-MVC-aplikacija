@@ -9,7 +9,7 @@ namespace TransportnoPreduzece.Data.Models
     {
         public int Id { get; set; }
         public DateTime Datum { get; set; }
-
+        public string Sifra { get; set; }
         public ICollection<NabavkaStavka> Stavke { get; set; }
 
         public int DobavljacId { get; set; }

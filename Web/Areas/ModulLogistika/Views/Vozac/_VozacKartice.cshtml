@@ -1,0 +1,31 @@
+﻿@using Web.Areas.ModulLogistika.Models
+@model List<Web.Areas.ModulLogistika.Models.VozacKarticaVM>
+
+@{ 
+    Layout = null;
+}
+<table>
+    <thead>
+        <tr>
+            <th>Datum koristenja</th>
+            <th>Količina</th>
+            <th>Ukupno</th>
+            <th>Adresa pumpe</th>
+        </tr>
+        
+    </thead>
+
+    <tbody>
+    @foreach (VozacKarticaVM item in Model)
+    {
+        <tr>
+            <td>@item.datumKoristenja.ToShortDateString()</td>
+            <td>@item.kolicinaLitara</td>
+            <td>@item.ukupniIznos</td>
+            <td>@item.adresaPumpe</td>
+            <td class="text-right">@Ajax.ActionLink(((char)160).ToString(), "UrediKarticu", "Vozac", new { id = item.karticaId }, new AjaxOptions { UpdateTargetId = "kartice", HttpMethod = "get" }, new { @class = "glyphicon glyphicon-edit" })</td>
+            <td class="text-right"> @Ajax.ActionLink(((char)160).ToString(), "ObrisiKarticu", "Vozac", new { id = item.karticaId }, new AjaxOptions { UpdateTargetId = "kartice", HttpMethod = "post", Confirm = "Sigurno želite obrisati karticu?" }, new { @class = "glyphicon glyphicon-minus-sign" })</td>
+        </tr>
+    }
+    </tbody>
+</table>

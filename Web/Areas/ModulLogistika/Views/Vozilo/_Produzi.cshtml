@@ -1,0 +1,39 @@
+﻿@model Web.Areas.ModulLogistika.Models.ProduziVM
+
+@{
+    ViewBag.Title = "Produzenje datuma registracije";
+}
+
+@using (Ajax.BeginForm("Produzi", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateModel(data);" }))
+{
+    @Html.ValidationSummary(false)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.voziloId)
+
+    <div class="form-group">
+        <label>Datum registracije vozila</label>
+        @Html.TextBoxFor(model => model.datum, new { @class = "form-control date-picker" })
+        @Html.ValidationMessageFor(model => model.datum, null, new { style = "color:red" })
+    </div>
+
+    <p class="error-msg"></p>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="Spremi" />
+    </div>
+}
+
+<script>
+    $(function () {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd.mm.yyyy',
+            startDate: "+2d"
+        });
+    });
+</script>
+
+
+
+
+

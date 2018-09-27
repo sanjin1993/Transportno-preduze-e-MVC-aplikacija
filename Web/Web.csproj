@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,7 +85,25 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -92,6 +111,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc.1.1.1\lib\net45\ReportViewerForMvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
@@ -151,11 +173,46 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\ModulLogistika\Views\web.config" />
+    <Content Include="Areas\ModulLogistika\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\Index.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_VozilaList.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\Details.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_Uredi.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_Odrzavanja.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_UrediOdrzavanje.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_DodajOdrzavanje.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\VoziloInstradacije.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\Dodaj.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\OdrzavanjaIndex.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\Index.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\Details.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\_PrikljucnaVozilaList.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\OdrzavanjaList.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\_Uredi.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\PrikljucnaVozila\Dodaj.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Index\Index.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\Index.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\Detalji.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_VozaciList.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_Uredi.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_VozacKartice.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_VozacOdsustva.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\Dodaj.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_Raskid.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozilo\_Produzi.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_UrediKarticu.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_DodajKarticu.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_UrediOdsustvo.cshtml" />
+    <Content Include="Areas\ModulLogistika\Views\Vozac\_DodajOdsustvo.cshtml" />
     <None Include="Properties\PublishProfiles\si113.app.fit.ba - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Reports\Dispozicija.aspx" />
+    <Content Include="Reports\Vozac.aspx" />
+    <Content Include="Reports\Vozilo.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\custom.min.js" />
@@ -167,9 +224,24 @@
     <Content Include="Scripts\knockout-3.4.1.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TransportnoPreduzece.Web.csproj" />
     <Content Include="TransportnoPreduzece.Web.csproj.user" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -193,6 +265,22 @@
     <Compile Include="Areas\ModulDispecer\Models\KolicinaTipovi.cs" />
     <Compile Include="Areas\ModulDispecer\Models\StavkaVM.cs" />
     <Compile Include="Areas\ModulDispecer\ModulDispecerAreaRegistration.cs" />
+    <Compile Include="Areas\ModulLogistika\Controllers\IndexController.cs" />
+    <Compile Include="Areas\ModulLogistika\Controllers\PrikljucnaVozilaController.cs" />
+    <Compile Include="Areas\ModulLogistika\Controllers\VozacController.cs" />
+    <Compile Include="Areas\ModulLogistika\Controllers\VoziloController.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\OdrzavanjeVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\PrikljucnaVozilaIndexVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\PrikljucnoVoziloDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\ProduziVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\RaskidVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VozacDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VozacIndexVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VozacKarticaVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VozacOdsustvaVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VozilaIndexVM.cs" />
+    <Compile Include="Areas\ModulLogistika\Models\VoziloDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulLogistika\ModulLogistikaAreaRegistration.cs" />
     <Compile Include="Autorizacija.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,6 +297,23 @@
     <Compile Include="Reports\Dispozicija.aspx.designer.cs">
       <DependentUpon>Dispozicija.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Vozac.aspx.cs">
+      <DependentUpon>Vozac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Vozac.aspx.designer.cs">
+      <DependentUpon>Vozac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VozacRM.cs" />
+    <Compile Include="Reports\Vozilo.aspx.cs">
+      <DependentUpon>Vozilo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Vozilo.aspx.designer.cs">
+      <DependentUpon>Vozilo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\VoziloRM.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -244,6 +349,7 @@
     <Content Include="Areas\ModulDispecer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\ModulDispecer\Views\web.config" />
     <Content Include="Areas\ModulDispecer\Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,6 +370,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\Dispozicija.rdlc" />
+    <EmbeddedResource Include="Reports\Vozac.rdlc" />
+    <EmbeddedResource Include="Reports\Vozilo.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

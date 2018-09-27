@@ -12,7 +12,6 @@ namespace TransportnoPreduzece.Data.DAL
             : base("TPConnectionString")
         {
             Database.SetInitializer<TPContext>(new CreateDatabaseIfNotExists<TPContext>());
-
         }
 
 
@@ -32,7 +31,6 @@ namespace TransportnoPreduzece.Data.DAL
 
 
         }
-
 
         public DbSet<Akcija> Akcije { get; set; }
         public DbSet<BenzinskaPumpa> BenzinskePumpe { get; set; }

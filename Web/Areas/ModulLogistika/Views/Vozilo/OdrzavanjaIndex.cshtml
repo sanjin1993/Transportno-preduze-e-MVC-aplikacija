@@ -1,0 +1,75 @@
+﻿@using Web.Areas.ModulLogistika.Models
+@model List<OdrzavanjeVM>
+@using TransportnoPreduzece.Data.Models
+@{
+    ViewBag.Title = "Odrzavanja";
+    int voziloID = (int) ViewData["voziloId"];
+    Layout = null;
+}
+
+
+
+<div class="col-md-12">
+
+
+    @using (Ajax.BeginForm("OdrzavanjaVozila", new { id = voziloID },
+        new AjaxOptions
+        {
+            HttpMethod = "get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "odrzavanja-output"
+
+        }
+        ))
+    {
+
+    <div class="form-inline" id="pretraga">
+
+        <div class="form-group col-xs-12 col-md-3">
+            <label>Kilometraza do:</label>
+            @Html.TextBox("kilometraza", null, new { @class = "form-control", @id = "txtkilometraza", onkeyup = @"this.onchange();" })
+        </div>
+
+        <div class="form-group col-xs-12 col-md-3">
+            <label>Troskovi do:</label>
+            @Html.TextBox("troskovi", null, new { @class = "form-control", @id = "txtTroskovi" , onkeyup = @"this.onchange();"})
+        </div>
+
+        @*<div class="hidden-xs-12">
+            <button type="submit" class="btn btn-primary btn-filtriraj">Filtriraj</button>
+        </div>*@
+    </div>
+
+    }
+
+</div>
+
+<div class="col-md-12">
+    <br />
+    @Html.Partial("_Odrzavanja", Model)
+</div>
+
+<script>
+    $(document).ready(function () {
+       $(':input').on('input',function(e){
+           var kilometraz = $("#txtkilometraza").val();
+           var trosak = $("#txtTroskovi").val();
+            $.ajax({
+                url: "@Url.Action("OdrzavanjaVozila", "Vozilo")",
+                type: 'GET',
+                data: { id: @voziloID, kilometraza: kilometraz, troskovi : trosak},
+                success: function (data) {
+                    alert("usao sam u success");
+                    if (data != "" || data != null) {
+                        $("#odrzavanja-output").html(data);
+                    }
+                    else {
+                        $("#odrzavanja-output").append("<p>Error</p>");
+                    }
+                }
+            });
+        });
+    });
+
+</script>
+

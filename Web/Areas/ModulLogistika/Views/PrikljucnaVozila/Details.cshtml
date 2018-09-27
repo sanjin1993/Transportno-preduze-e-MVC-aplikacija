@@ -1,0 +1,108 @@
+﻿@model Web.Areas.ModulLogistika.Models.PrikljucnoVoziloDetaljnoVM
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row vozilo-detaljno">
+    <div class="col-md-12 ">
+
+        <div class="col-xs-12 col-md-6">
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3 class="x-title">Prikljucno vozilo</h3>
+                </div>
+                <div class="panel-body" id="prikljucnovozilo-info">
+                    <table class="table table-user-information" style="table-layout:fixed;">
+                        <tbody>
+                            <tr>
+                                <td><label>Broj sasije</label></td>
+                                <td>@Model.brojSasije</td>
+                            </tr>
+                            <tr>
+                                <td><label>Registracijske oznake</label></td>
+                                <td>@Model.regOznake</td>
+                            </tr>
+                            <tr>
+                                <td><label>Nosivost</label></td>
+                                <td>@Model.nosivost</td>
+                            </tr>
+                            <tr>
+                                <td><label>Broj osovina</label></td>
+                                <td>@Model.brojOsovina</td>
+                            </tr>
+                            <tr>
+                                <td><label>Cijena</label></td>
+                                <td>@Math.Round(Model.cijena, 2)</td>
+                            </tr>
+                            <tr>
+                                <td><label>Visina</label></td>
+                                <td>@Model.visina</td>
+                            </tr>
+                            <tr>
+                                <td><label>Duzina</label></td>
+                                <td>@Model.duzina</td>
+                            </tr>
+                            <tr>
+                                <td><label>Tezina</label></td>
+                                <td>@Model.tezina</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum registracije</label></td>
+                                <td>@Model.datumRegistracije.Value.ToString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Status Vozila</label></td>
+                                <td>@Model.statusVozila</td>
+                            </tr>
+                            <tr>
+                                <td><label>Tip Vozila</label></td>
+                                <td>@Model.tipPrikljucnog</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="pull-right">
+                        @Ajax.ActionLink("Uredi", "Uredi", new { prikljucnovoziloID = Model.prikljucnoVoziloId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "get", UpdateTargetId = "prikljucnovozilo-info" }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Obriši", "Obrisi", new { prikljucnovoziloID = Model.prikljucnoVoziloId }, new { @class = "btn btn-danger", onclick = "return confirm('Jeste li sigurni da zelite izbrisati prikljucno-vozilo?');" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-md-6">
+          
+
+                <div class="panel-body" id="aaa">
+
+                </div>
+
+        </div>
+
+        <div class="col-xs-12 col-md-12">
+
+            <div class="x_panel">
+
+                <div class="panel-body" id="prikljucnaVozilaodrzavanja">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $.get(
+            "@Url.Action("OdrzavanjaPrikljucnoVozilo", "PrikljucnaVozila",new {id = @Model.prikljucnoVoziloId})", function (data) {
+                    $("#prikljucnaVozilaodrzavanja").html(data);
+        });
+    });
+</script>

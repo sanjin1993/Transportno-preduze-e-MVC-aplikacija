@@ -8,3 +8,17 @@ C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\bin
 C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\obj\Release\Data.csprojResolveAssemblyReference.cache
 C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\obj\Release\Data.dll
 C:\Users\zek\Documents\Visual Studio 2015\Projects\TransportnoPreduzece\Data\obj\Release\Data.pdb
+C:\Users\110\source\repos\Project1\Data\bin\Release\Data.dll.config
+C:\Users\110\source\repos\Project1\Data\bin\Release\Data.dll
+C:\Users\110\source\repos\Project1\Data\bin\Release\Data.pdb
+C:\Users\110\source\repos\Project1\Data\bin\Release\EntityFramework.dll
+C:\Users\110\source\repos\Project1\Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\110\source\repos\Project1\Data\bin\Release\EntityFramework.xml
+C:\Users\110\source\repos\Project1\Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.csprojAssemblyReference.cache
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.Migrations.InitialCreate.resources
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.csproj.GenerateResource.cache
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.csproj.CoreCompileInputs.cache
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.csproj.CopyComplete
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.dll
+C:\Users\110\source\repos\Project1\Data\obj\Release\Data.pdb
