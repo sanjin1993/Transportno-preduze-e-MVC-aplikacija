@@ -1,0 +1,52 @@
+﻿
+@using PagedList
+
+@using TransportnoPreduzece.Areas.ModulVozac.Models
+@model List<TroskoviPrikaziVM>
+
+@{
+    // Layout = null;
+}
+<div class="x_content">
+
+    <table class="table table-hover ">
+        <thead class="thead-round">
+            <tr>
+                <th>Tip troska</th>
+
+                <th>Ukupno</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (TroskoviPrikaziVM item in Model)
+            {
+
+            <tr>
+
+
+                <td>@item.TipTrosak</td>
+                <td>@item.Ukupno BAM</td>
+                <td><input id="ButtonDelete" type="button" value="Obriši" class="btn btn-danger btn-xs" onclick="if (confirm('Da li ste sigurni da zelite obrisati stavku?')) location.href='@Url.Action("ObrisiTrosak", "Instradacije", new { trosakId = item.TrosakId })'" /></td>
+               
+            </tr>
+
+            }
+            <tr>
+                <td style="font-weight:bold; font-size:larger">Ukupan iznos troškova</td>
+            <td style="font-weight:bold; font-size:larger">@ViewBag.Suma BAM</td>
+            <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
+</div>

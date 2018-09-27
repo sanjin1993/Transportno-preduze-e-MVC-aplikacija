@@ -1,0 +1,126 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using TransportnoPreduzece.Areas.ModulVozac.Models
+@model IEnumerable<InstradacijePrikaziVM>
+@{
+
+
+
+    ViewBag.Title = "Zadaci";
+
+}
+
+<div class="row instradacije">
+    <div class="col-md-12 " >
+        <h2>Zadaci</h2>
+
+     
+            <div class="form-inline">
+                <div class="form-group col-md-2">
+                    <label>Datum od</label>
+                    <input type="date" id="datumOd" class="form-control" value="2016-01-01"/>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Datum do</label>
+                    <input type="date" id="datumDo" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")"/>
+                </div>
+                <div class="form-group col-md-2">
+                    <label>&nbsp;</label>
+                    <input type="submit" value="Filtriraj" class="btn btn-primary " style="bottom:0" id="filterBtn" />
+                </div>
+</div>
+    </div>
+</div>
+
+<div class="x_content">
+
+    <table class="table table-hover ">
+        <thead>
+            <tr>
+                <th>Datum</th>
+
+                <th>Drzava od</th>
+                <th>Drzava do</th>
+                <th>Vozilo</th>
+                <th>Prikljucno vozilo</th>
+
+                <th>Status</th>
+
+
+            </tr>
+        </thead>
+        <tbody id="dataFilter">
+
+            @foreach (InstradacijePrikaziVM item in Model)
+            {
+
+                <tr>
+
+                    <td>@item.Datum.ToShortDateString()</td>
+
+                    <td>@item.DrzavaOd</td>
+                    <td>@item.DrzavaDo</td>
+                    <td>@item.Vozilo</td>
+                    <td>@item.PrikljucnoVozilo</td>
+                    <td>@item.Status</td>
+                    <td>@Html.ActionLink("Detalji", "Details", new { id = item.InstradacijaId })</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="ajaxDiv">
+
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#filterBtn").click(function () {
+            var datumOd = $("#datumOd").val();
+            var datumDo = $("#datumDo").val();
+            var SetData = $("#dataFilter");
+            SetData.html("");
+            $.ajax({
+                type: "post",
+                url: "/Instradacije/Prikazi?datumOd=" + datumOd + "&DatumDo=" + datumDo,
+                contentType: "html",
+                success: function (result) {
+
+                    if (result.length == 0) {
+                        SetData.append('<tr style="color:red"><td colspan="3">Nema rezultata</td></tr>')
+                    }
+                    else {
+                        $.each(result, function (index, value) {
+                            var id = value.InstradacijaId;
+                            var link = '/ModulVozac/Instradacije/Details?id=';
+                            var dateString = value.Datum.substr(6);
+                            var currentTime = new Date(parseInt(dateString));
+                            var month = currentTime.getMonth() + 1;
+                            var day = currentTime.getDate();
+                            var year = currentTime.getFullYear();
+                            var date = day + "/" + month + "/" + year;
+                            var Data = "<tr>" +
+                                "<td>" + date + "</td>" +
+                                "<td>" + value.Vozilo + "</td>" +
+                                "<td>" + value.DrzavaOd + "</td>" +
+                                "<td>" + value.DrzavaDo + "</td>" +
+                                "<td>" + value.PrikljucnoVozilo + "</td>" +
+                                "<td>" + value.Status + "</td>" +
+                                "<td><a href=" + link + id + ">Detalji</a></td>"
+
+                            "</tr>";
+
+
+                            SetData.append(Data);
+
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

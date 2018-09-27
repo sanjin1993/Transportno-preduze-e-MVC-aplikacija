@@ -1,0 +1,38 @@
+﻿@model TransportnoPreduzece.Areas.ModulVozac.Models.TroskoviEditVM
+    @{}
+    
+@using (Html.BeginForm("ZakljuciTrosak", "Instradacije", new { instradacijaId = Model.InstradacijaId }, FormMethod.Post, new { data_ajax = "false" }))
+    {
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="3"><hr /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td> <label>Tip troška:</label></td>
+                    <td> @Html.DropDownListFor(model => model.TipTroskaId, Model.Troskovi, new { @class = "form-control" })</td>
+                </tr>
+
+                <tr>
+
+                    <td> <label>Ukupan iznos:</label></td>
+                    <td> @Html.TextBoxFor(model => model.Ukupno, new { @class = "form-control" })</td>
+                    <td> @Html.ValidationMessageFor(model => model.Ukupno)</td>
+
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="3"> <input type="submit" value="Spremi" class="btn btn-success btn-sm" /></td>
+                </tr>
+            </tbody>
+        </table>
+      
+    }
+
+
+
+

@@ -1,0 +1,86 @@
+﻿
+@model TransportnoPreduzece.Areas.ModulVozac.Models.TrosakBenzinEditVM
+@{}
+
+@using (Html.BeginForm("ZakljuciBenzinTrosak", "Instradacije", FormMethod.Post, new { data_ajax = "false" }))
+{
+    
+    <table>
+        <thead>
+            
+            <th style="font-size:larger">PODACI O KARTICI</th>
+        </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3"><hr /></td>
+
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+
+                    <td style="font-weight:bold"><label>Aktivna:</label></td>
+                    @if (Model.Aktivna == true)
+        {
+            <td style="font-weight:bold">DA</td>
+}
+else
+{
+            <td style="font-weight:bold">NE</td>
+}
+                </tr>
+                <tr>
+                    <td style="font-weight:bold">Ukupan iznos dodijeljen na kartici</td>
+                    <td>@Model.DpdijeljenIznos BAM</td>
+
+                </tr>
+                <tr>
+
+                    <td>@Html.HiddenFor(model => model.KarticaId)</td>
+
+                </tr>
+                <tr>
+
+                    <td>@Html.HiddenFor(model => model.VozacId)</td>
+
+                </tr>
+                <tr>
+                    <td style="font-weight:bold">Trenutni iznos</td>
+                    <td>@Model.TrenutniIznos BAM</td>
+
+                </tr>
+
+
+                <tr>
+                    <td> <label>Benzinska pumpa:</label></td>
+                    <td> @Html.DropDownListFor(model => model.BenzinskaPumpaId, Model.BenzinskePumpe, new { @class = "form-control" })</td>
+                </tr>
+
+                <tr>
+
+                    <td> <label>Ukupan iznos:</label></td>
+                    <td> @Html.TextBoxFor(model => model.UkupanIznos, new { @class = "form-control" })</td>
+                    <td> @Html.ValidationMessageFor(model => model.UkupanIznos)</td>
+
+                </tr>
+
+                <tr>
+                    <td> <label>Kolicina litara:</label></td>
+                    <td> @Html.TextBoxFor(model => model.KolicinaLitara, new { @class = "form-control" })</td>
+                    <td> @Html.ValidationMessageFor(model => model.KolicinaLitara)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="3"> <input type="submit" value="Spremi" class="btn btn-success btn-sm" /></td>
+                </tr>
+            </tbody>
+    </table>
+
+}
+
+
+
+
