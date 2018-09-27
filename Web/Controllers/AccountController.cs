@@ -65,6 +65,18 @@ namespace TransportnoPreduzece.Web.Controllers
                             {
                                 return RedirectToAction("Index", "Vozilo", new { area = "ModulLogistika" });
                             }
+                            if (roles[0] == "vozač")
+                            {
+                                Global.odabraniVozac = objUser;
+                                return RedirectToAction("Prikazi", "Instradacije", new { area = "ModulVozac" });
+
+                            }
+                            if (roles[0] == "mehaničar")
+                            {
+                                Global.odabraniVozac = objUser;
+                                return RedirectToAction("Prikazi", "Dobavljac", new { area = "ModulMehanicar" });
+
+                            }
                         }
                     }
                 }

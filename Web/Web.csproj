@@ -206,11 +206,43 @@
     <Content Include="Areas\ModulLogistika\Views\Vozac\_DodajKarticu.cshtml" />
     <Content Include="Areas\ModulLogistika\Views\Vozac\_UrediOdsustvo.cshtml" />
     <Content Include="Areas\ModulLogistika\Views\Vozac\_DodajOdsustvo.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Dobavljac\Dodaj.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Dobavljac\Prikazi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Dobavljac\Uredi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Dobavljac\_NabavkaStavke.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\Details.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\DodajNabavku.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\Index.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\Prikazi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\_DodajStavku.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\_ListStavke.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Nabavka\_UrediStavku.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\Details.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\Index.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\Prikazi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\Statusi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\_Dodaj.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Odrzavanje\_Uredi.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ModulMehanicar\Views\web.config" />
+    <Content Include="Areas\ModulMehanicar\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\Details.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\Prikazi.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\Statusi.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\TrosakBenzin.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\Troskovi.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\_InstradacijeList.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\_KarticeList.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Instradacije\_TroskoviList.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ModulVozac\Views\web.config" />
+    <Content Include="Areas\ModulVozac\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\si113.app.fit.ba - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Reports\Dispozicija.aspx" />
+    <Content Include="Reports\Instradacija.aspx" />
     <Content Include="Reports\Vozac.aspx" />
     <Content Include="Reports\Vozilo.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -281,12 +313,34 @@
     <Compile Include="Areas\ModulLogistika\Models\VozilaIndexVM.cs" />
     <Compile Include="Areas\ModulLogistika\Models\VoziloDetaljnoVM.cs" />
     <Compile Include="Areas\ModulLogistika\ModulLogistikaAreaRegistration.cs" />
+    <Compile Include="Areas\ModulMehanicar\Controllers\DobavljacController.cs" />
+    <Compile Include="Areas\ModulMehanicar\Controllers\NabavkaController.cs" />
+    <Compile Include="Areas\ModulMehanicar\Controllers\OdrzavanjeController.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\DobavljacDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\DobavljacDodajVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\DobavljacPrikaziVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\ErrorHelper.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\NabavkaDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\NabavkaPrikaziVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\OdrzavanjeDetaljnoVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\OdrzavanjePrikaziVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\Models\StavkaNabavkaVM.cs" />
+    <Compile Include="Areas\ModulMehanicar\ModulMehanicarAreaRegistration.cs" />
+    <Compile Include="Areas\ModulVozac\Controllers\InstradacijeController.cs" />
+    <Compile Include="Areas\ModulVozac\Models\InstradacijeDetaljiVM.cs" />
+    <Compile Include="Areas\ModulVozac\Models\InstradacijePrikaziVM.cs" />
+    <Compile Include="Areas\ModulVozac\Models\TrosakBenzinEditVM.cs" />
+    <Compile Include="Areas\ModulVozac\Models\TrosakBenzinPrikaziVM.cs" />
+    <Compile Include="Areas\ModulVozac\Models\TroskoviEditVM.cs" />
+    <Compile Include="Areas\ModulVozac\Models\TroskoviPrikaziVM.cs" />
+    <Compile Include="Areas\ModulVozac\ModulVozacAreaRegistration.cs" />
     <Compile Include="Autorizacija.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\DispozicijaRM.cs" />
@@ -297,6 +351,14 @@
     <Compile Include="Reports\Dispozicija.aspx.designer.cs">
       <DependentUpon>Dispozicija.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Instradacija.aspx.cs">
+      <DependentUpon>Instradacija.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\Instradacija.aspx.designer.cs">
+      <DependentUpon>Instradacija.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\InstradacijaRM.cs" />
     <Compile Include="Reports\Vozac.aspx.cs">
       <DependentUpon>Vozac.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +412,8 @@
     <Content Include="Areas\ModulDispecer\Views\web.config" />
     <Content Include="Areas\ModulDispecer\Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_Layout3.cshtml" />
+    <Content Include="Views\Shared\_Layout4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -370,6 +434,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\Dispozicija.rdlc" />
+    <EmbeddedResource Include="Reports\Instradacija.rdlc" />
     <EmbeddedResource Include="Reports\Vozac.rdlc" />
     <EmbeddedResource Include="Reports\Vozilo.rdlc" />
   </ItemGroup>
