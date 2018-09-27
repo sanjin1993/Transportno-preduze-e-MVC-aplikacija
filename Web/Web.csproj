@@ -424,6 +424,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\test\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Uloga\" />
   </ItemGroup>
