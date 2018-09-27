@@ -168,6 +168,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\nprogress.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\transportno.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

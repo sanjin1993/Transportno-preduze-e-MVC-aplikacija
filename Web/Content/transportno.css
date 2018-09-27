@@ -1,0 +1,71 @@
+﻿
+.mainDiv {
+    width: 100%;
+}
+
+.childDiv {
+    float: left;
+    width: 50%;
+}
+
+.input_16 {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.thead-round {
+    background-color: lightgray;
+    border: solid;
+}
+
+.btn {
+    width: 100%;
+    height: 100%;
+}
+
+.hdng {
+    border: solid;
+    margin: 70px, 0px, 20px, 0px;
+    padding: 5px;
+    text-align: center;
+}
+
+.errorMsg {
+    color: red;
+}
+
+.aParent {
+    width: 100%;
+    display: flex;
+    flex-direction: row
+}
+
+.aChild {
+    width: 100%
+}
+
+.btnOdustani {
+    width: 139px;
+}
+
+.btnZakljuci {
+    width: 250px;
+}
+
+.parent1 {
+    width: 400px;
+}
+
+.child1 {
+    float: left;
+    width: 45%;
+}
+
+.child2 {
+    float: right;
+    width: 45%;
+}
+
+.btnDodajStavku {
+    margin-top: 22px;
+}

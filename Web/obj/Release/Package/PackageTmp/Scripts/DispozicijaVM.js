@@ -3,8 +3,6 @@
     this.Kolicina = ko.observable(data.Kolicina);
 }
 
-
-
 var stavkeMapping = {
     'Stavke': {
         key: function (Stavka) {
@@ -27,7 +25,6 @@ var TipKolicineMapping = {
     }
 }
 
-
 TipKolicineVM = function (data) {
     var self = this;
     ko.mapping.fromJS(data, TipKolicineMapping, self);
@@ -39,7 +36,6 @@ StavkaVM = function (data) {
     ko.mapping.fromJS(data, stavkeMapping, self);
     console.log(self);
 };
-
 
 DispozicijaVM = function (data) {
 
@@ -100,14 +96,7 @@ DispozicijaVM = function (data) {
 
         }
 
-
-
-
-
-
-
     };
-
 
 };
 
@@ -178,6 +167,7 @@ function validateForm() {
             $(this).parent().addClass("has-error");
         }
     });
+
     if (Model.Stavke().length === 0) {
         document.getElementById("stavke-error").innerHTML = "Dodajte minimalno jednu stavku.";
         validation = false;
@@ -190,15 +180,9 @@ function validateForm() {
 
 }
 
-
-
-
-
 function clearForm() {
     var elements = document.getElementsByTagName("input");
     for (var i = 0; i < elements.length; i++) {
         elements[i].value = "";
     }
-   
-
 }
