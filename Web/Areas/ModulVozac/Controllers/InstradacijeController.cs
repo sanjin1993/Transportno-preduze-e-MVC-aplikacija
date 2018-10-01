@@ -12,6 +12,7 @@ using Web.Areas.ModulVozac.Models;
 
 namespace Web.Areas.ModulVozac.Controllers
 {
+    [Authorize(Roles = "vozač")]
     public class InstradacijeController : Controller
     {
 
@@ -38,7 +39,7 @@ namespace Web.Areas.ModulVozac.Controllers
             var Model = ctx.Instradacije
                        .Where(x => (
                                x.Datum >= DateFrom && x.Datum <= DateTo
-                             && x.IsDeleted == false
+                             && x.IsDeleted == false && x.VozacId == Global.odabraniVozac.ZaposlenikId
                              )
 
                            )
@@ -306,7 +307,7 @@ namespace Web.Areas.ModulVozac.Controllers
             return benzinske;
         }
 
-        public ActionResult ZakljuciTrosak(TroskoviEditVM model)
+        public JsonResult ZakljuciTrosak(TroskoviEditVM model)
         {
 
             if (ModelState.IsValid)
@@ -320,7 +321,8 @@ namespace Web.Areas.ModulVozac.Controllers
                 ctx.Troskovi.Add(trosak);
 
                 ctx.SaveChanges();
-                return RedirectToAction("Details", new { id = trosak.InstradacijaId });
+                return Json(new {Url = "Details?id=" + trosak.InstradacijaId});
+           
             }
             else
             {
@@ -370,7 +372,7 @@ namespace Web.Areas.ModulVozac.Controllers
                         Message = x.Value.Errors.Select(y => y.ErrorMessage).FirstOrDefault(),
                         Name = x.Key
                     }).ToList();
-                    return Json(new { Errors = errors });
+                    return Json(new { Errors = errors }, JsonRequestBehavior.AllowGet);
 
 
                 }
@@ -384,7 +386,7 @@ namespace Web.Areas.ModulVozac.Controllers
                     Message = x.Value.Errors.Select(y => y.ErrorMessage).FirstOrDefault(),
                     Name = x.Key
                 }).ToList();
-                return Json(new { Errors = errors });
+                return Json(new { Errors = errors }, JsonRequestBehavior.AllowGet);
 
 
             }

@@ -10,7 +10,7 @@ namespace Web.Areas.ModulVozac.Models
     public class TroskoviEditVM
     {
         public int TrosakId { get; set; }
-        [Range(0, double.MaxValue, ErrorMessage = "Iznos mora biti u rasponu od 0 BAM - 10000 BAM")]
+        [Range(1, double.MaxValue, ErrorMessage = "Iznos mora biti u rasponu od 0 BAM - 10000 BAM")]
         public double Ukupno { get; set; }
 
         public int TipTroskaId { get; set; }

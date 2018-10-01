@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using TransportnoPreduzece.Data.DAL;
 using TransportnoPreduzece.Data.Models;
+using Web.Areas.ModulMehanicar.Models;
 
 namespace Web.Areas.ModulMehanicar.Controllers
 {
+    [Authorize(Roles = "mehaničar")]
     public class NabavkaController : Controller
     {
         TPContext ctx = new TPContext();
@@ -14,14 +18,14 @@ namespace Web.Areas.ModulMehanicar.Controllers
         public ActionResult Index(int page = 1)
         {
 
-            var Model = ctx.Nabavke.OrderBy(x => x.DatumNabavke).Select(x =>
+            var Model = ctx.Nabavke.OrderBy(x => x.Datum).Select(x =>
                  new NabavkaPrikaziVM()
                  {
-                     NabavkaId = x.NabavkaId,
+                     NabavkaId = x.Id,
                      Sifra = x.Sifra,
-                     DatumNabavke = x.DatumNabavke,
+                     DatumNabavke = x.Datum,
                      DobavljacNaziv = x.Dobavljac.Naziv,
-                     BrojStavki = ctx.StavkeNabavke.Where(y => y.NabavkaId == x.NabavkaId).Count()
+                     BrojStavki = ctx.StavkeNabavke.Where(y => y.NabavkaId == x.Id).Count()
 
 
                  }).ToPagedList(page, 15);
@@ -35,15 +39,15 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
         public ActionResult Details(int? nabavkaId)
         {
-            var Model = ctx.Nabavke.Where(z => z.NabavkaId == nabavkaId)
+            var Model = ctx.Nabavke.Where(z => z.Id == nabavkaId)
                 .Select(x =>
                   new NabavkaDetaljnoVM()
                   {
-                      NabavkaId = x.NabavkaId,
+                      NabavkaId = x.Id,
                       Sifra = x.Sifra,
-                      DatumNabavke = x.DatumNabavke,
+                      DatumNabavke = x.Datum,
                       DobavljacNaziv = x.Dobavljac.Naziv,
-                      BrojStavki = ctx.StavkeNabavke.Where(y => y.NabavkaId == x.NabavkaId).Count(),
+                      BrojStavki = ctx.StavkeNabavke.Where(y => y.NabavkaId == x.Id).Count(),
                       Stavke = ctx.StavkeNabavke.Where(z => z.NabavkaId == nabavkaId).Select(s => new StavkaNabavkaVM()
                       {
                           NabavkaStavkaId = s.Id,
@@ -81,8 +85,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
         {
             Nabavka n = new Nabavka
             {
-                NabavkaId = nabavka.NabavkaId,
-                DatumNabavke = nabavka.DatumNabavke,
+                Id = nabavka.NabavkaId,
+                Datum = nabavka.DatumNabavke,
                 Sifra = nabavka.Sifra,
                 DobavljacId = nabavka.DobavljacId,
 
@@ -111,8 +115,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
         {
             Nabavka n = new Nabavka
             {
-                NabavkaId = nabavka.NabavkaId,
-                DatumNabavke = nabavka.DatumNabavke,
+                Id = nabavka.NabavkaId,
+                Datum = nabavka.DatumNabavke,
                 Sifra = nabavka.Sifra,
                 DobavljacId = nabavka.DobavljacId,
 
@@ -237,8 +241,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
                     return RedirectToAction("Lista", new { nabavkaId = stavka.NabavkaId });
                 }
 
-                Nabavka n = ctx.Nabavke.OrderByDescending(x => x.NabavkaId).FirstOrDefault();
-                nabavkaId = n.NabavkaId;
+                Nabavka n = ctx.Nabavke.OrderByDescending(x => x.Id).FirstOrDefault();
+                nabavkaId = n.Id;
                 stavka = new NabavkaStavka();
                 stavka.NabavkaId = nabavkaId;
                 ctx.StavkeNabavke.Add(stavka);

@@ -10,6 +10,7 @@ using Web.Areas.ModulMehanicar.Models;
 
 namespace Web.Areas.ModulMehanicar.Controllers
 {
+    [Authorize(Roles = "mehaničar")]
     public class OdrzavanjeController : Controller
     {
         TPContext ctx = new TPContext();
@@ -45,8 +46,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
                 x => new OdrzavanjeDetaljnoVM()
                 {
                     OdrzavanjeId = odrzavanjeId,
-                    VoziloId = x.VoziloId,
-                    PrikljucnoVoziloId = x.PrikljucnoVoziloId,
+                    VoziloId = (int)x.VoziloId,
+                    PrikljucnoVoziloId = (int)x.PrikljucnoVoziloId,
                     TipOdrzavanjaId = x.TipOdrzavanjaId,
                     Kilometraza = x.Kilometraza,
                     Detaljno = x.Detaljno,
@@ -70,8 +71,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
             model = ctx.Odrzavanja.Select(x => new OdrzavanjeDetaljnoVM()
             {
                 OdrzavanjeId = x.OdrzavanjeId,
-                VoziloId = x.VoziloId,
-                PrikljucnoVoziloId = x.PrikljucnoVoziloId,
+                VoziloId =(int) x.VoziloId,
+                PrikljucnoVoziloId = (int)x.PrikljucnoVoziloId,
                 TipOdrzavanjaId = x.TipOdrzavanjaId,
                 Kilometraza = x.Kilometraza,
                 Detaljno = x.Detaljno,
@@ -122,7 +123,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
             return statusi;
         }
 
-        [HttpPost]
+      
         public ActionResult DodajOdrzavanje()
         {
             OdrzavanjeDetaljnoVM Model = new OdrzavanjeDetaljnoVM();
@@ -134,7 +135,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
             Model.TipOdrzavanjaStavke = BindTipOdrzavanja();
 
-            return PartialView("_Dodaj", Model);
+            return View("_Dodaj", Model);
         }
 
         public ActionResult Snimi(OdrzavanjeDetaljnoVM Model)
@@ -214,7 +215,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
             prikljucnavozila.Add(new SelectListItem { Value = null, Text = "Odaberite prikljucno vozilo" });
 
-            prikljucnavozila.AddRange(ctx.PrikljucnaVozila.Select(x => new SelectListItem { Value = x.PrikljucnoVoziloId.ToString(), Text = x.TipPrikljucnog.Naziv + " - " + x.BrojSasije }).ToList());
+            prikljucnavozila.AddRange(ctx.PrikljucnaVozila.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.TipPrikljucnog.Naziv + " - " + x.BrojSasije }).ToList());
             return prikljucnavozila;
         }
 

@@ -10,6 +10,7 @@ using Web.Areas.ModulMehanicar.Models;
 
 namespace Web.Areas.ModulMehanicar.Controllers
 {
+    [Authorize(Roles = "mehaničar")]
     public class DobavljacController : Controller
     {
         TPContext ctx = new TPContext();
@@ -54,17 +55,17 @@ namespace Web.Areas.ModulMehanicar.Controllers
             return RedirectToAction("Prikazi");
 
         }
-        //public ActionResult Dodaj()
-        //{
-        //    DobavljacDetaljnoVM Model = new DobavljacDetaljnoVM();
+        public ActionResult Dodaj()
+        {
+            DobavljacDetaljnoVM Model = new DobavljacDetaljnoVM();
 
-        //    return View("Uredi", Model);
+            return View("Uredi", Model);
 
-        //    ctx.SaveChanges();
+            ctx.SaveChanges();
 
-        //    return RedirectToAction("Prikazi");
+            return RedirectToAction("Prikazi");
 
-        //}
+        }
 
         public ActionResult Snimi(DobavljacDetaljnoVM Model)
         {
@@ -89,6 +90,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
             dobavljac.Naziv = Model.Naziv;
             dobavljac.Adresa = Model.Adresa;
             dobavljac.Telefon = Model.Telefon;
+            dobavljac.ZaposlenikId = Global.odabraniVozac.ZaposlenikId;
 
             ctx.SaveChanges();
 
