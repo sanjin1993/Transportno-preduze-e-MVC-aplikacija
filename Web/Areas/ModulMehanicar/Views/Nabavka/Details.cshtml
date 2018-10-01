@@ -1,0 +1,61 @@
+﻿
+@model Web.Areas.ModulMehanicar.Models.NabavkaDetaljnoVM
+@{
+    ViewBag.Title = "Details";
+
+}
+<div class="aParent">
+    <div class="row aChild">
+        <div class="col-md-6">
+
+            <div class="x_panel">
+                <div class="x_title"><h3 class="x-title">Nabavka: </h3></div>
+                <div class="panel-body" id="instradacija-info">
+
+                    <table class="table table-user-information">
+
+                        <tbody>
+                            <tr>
+                                <td><label> Sifra nabavke</label></td>
+                                <td>@Model.Sifra</td>
+                            </tr>
+                            <tr>
+                                <td><label>Datum nabavke</label></td>
+                                <td>@Model.DatumNabavke.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td><label>Dobavljac nabavke</label></td>
+                                <td>@Model.DobavljacNaziv</td>
+                            </tr>
+                            <tr>
+                                <td><label>Broj stavki</label></td>
+                                <td>@Model.BrojStavki</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @Ajax.ActionLink("Dodaj stavku", "DodajStavku", new { nabavkaId = @Model.NabavkaId }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "stavka" }, new { @class = "btn btn-primary pull-right" })
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="stavka"></div>
+    </div>
+</div>
+
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h3 class="x-title">Dijelovi</h3>
+    </div>
+
+    <div id="stavkeList">
+        @Html.Action("Lista", new { nabavkaId = Model.NabavkaId })
+    </div>
+</div>
+
+
+
+

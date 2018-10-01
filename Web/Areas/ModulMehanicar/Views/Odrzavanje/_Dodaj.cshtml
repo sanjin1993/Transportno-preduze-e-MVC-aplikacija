@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Uredi";
+}
+@model Web.Areas.ModulMehanicar.Models.OdrzavanjeDetaljnoVM
+
+<h2>Dodaj novo odrzavanje</h2>
+
+@using (Ajax.BeginForm("Snimi", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "uredi_odrzavanje" }))
+{
+
+    <form action="/ModulMehanicar/Odrzavanje/Snimi">
+
+        @Html.HiddenFor(model => model.OdrzavanjeId)
+
+        <div class="form-group">
+            <label>Troskovi</label>
+
+            @Html.TextBoxFor(model => model.Troskovi, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Datum odrzavanja</label>
+            @Html.TextBoxFor(model => @model.Datum, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Kilometraza</label>
+            @Html.TextBoxFor(model => model.Kilometraza, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Detalji:</label>
+            @Html.TextAreaFor(model => model.Detaljno, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Vozilo</label>
+            @Html.DropDownListFor(model => model.VoziloId, Model.VoziloStavke, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Prikljucno vozilo</label>
+            @Html.DropDownListFor(model => model.PrikljucnoVoziloId, Model.PrikljucnoVoziloStavke, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Vozilo</label>
+            @Html.DropDownListFor(model => model.TipOdrzavanjaId, Model.TipOdrzavanjaStavke, new { @class = "form-control" })
+        </div>
+        <div class="aParent">
+            <input type="submit" value="Snimi" class="btn btn-success" style="width:139px" />
+            @Html.ActionLink("Odustani", "Prikazi", "Odrzavanje", new { @class = "btn btn-danger btnOdustani" })
+
+        </div>
+    </form>
+
+}

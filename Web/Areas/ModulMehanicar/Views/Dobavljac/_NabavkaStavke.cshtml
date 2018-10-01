@@ -1,0 +1,26 @@
+﻿
+@using PagedList;
+@using Web.Areas.ModulMehanicar.Models
+
+@model IPagedList<Web.Areas.ModulMehanicar.Models.NabavkaPrikaziVM>
+
+<h2>Lista nabavki za odabranog dobavljaca </h2>
+<table class="table table-striped " >
+    <thead >
+    <tr>
+        @*<td class="panel-title" title="solid">Sifra</td>*@
+        <td>Datum</td>
+        <td>Broj stavki</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (NabavkaPrikaziVM item in Model)
+    {
+        <tr>
+            @*<td>@Html.ActionLink(@item.Sifra, "Details","Nabavka", new { nabavkaId = item.NabavkaId }, null)</td>*@
+            <td>@item.DatumNabavke.ToShortDateString()</td>
+            <td>@item.BrojStavki</td>
+        </tr>
+    }
+    </tbody>
+</table>

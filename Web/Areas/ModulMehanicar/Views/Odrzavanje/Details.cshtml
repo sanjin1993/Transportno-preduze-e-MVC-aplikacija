@@ -1,0 +1,54 @@
+﻿
+@model Web.Areas.ModulMehanicar.Models.OdrzavanjeDetaljnoVM
+<div class="panel-body" id="odrzavanje-info">
+    <table>
+        <tbody>
+            <tr>
+                <td><label>Tip odrzavanja</label></td>
+                <td>@Model.Tip_Odrzavanja</td>
+            </tr>
+            <tr>
+                <td><label>Troskovi odrzavanja</label></td>
+                <td>@Model.Troskovi</td>
+            </tr>
+            <tr>
+                <td><label>Datum odrzavanja</label></td>
+                <td>@Model.Datum.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td><label>Kilometraza odrzavanja</label></td>
+                <td>@Model.Kilometraza</td>
+            </tr>
+            <tr>
+                <td><label>Opis o kvaru</label></td>
+                <td>@Model.Detaljno</td>
+            </tr>
+            <tr>
+                <td><label>Vozilo</label></td>
+                <td>@Model.Vozilo </td>
+                <td>@Ajax.ActionLink("Zaključi status za vozilo", "UrediStatus", new { voziloId = Model.VoziloId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "status-info" }, new { @class = "btn btn-success  btn-sm btnZakljuci" })</td>
+            </tr>
+            <tr>
+                <td><label>Prikljucno Vozilo</label></td>
+                <td>
+                    @Model.PrikljucnoVozilo
+                </td>
+                <td>@Ajax.ActionLink("Zaključi status za priključno vozilo", "UrediStatus", new { prikljucnoVoziloId = Model.PrikljucnoVoziloId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "status-info" }, new { @class = "btn btn-success btn-sm btnZakljuci" })</td>
+
+            </tr>
+
+
+        </tbody>
+    </table>
+    @Ajax.ActionLink("Uredi", "Uredi", new { odrzavanjeId = Model.OdrzavanjeId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "odrzavanje-info" }, new { @class = "btn btn-primary btnOdustani" })
+    @Html.ActionLink("Odustani", "Prikazi", "Odrzavanje", new { @class = "btn btn-danger btnOdustani" })
+
+
+    <div id="status-info">
+
+    </div>
+
+
+</div>
+
+@*@Html.ActionLink("Obriši", "Obrisi", new { odrzavanje = Model.InstradacijaId }, new { @class = "btn btn-danger" })*@

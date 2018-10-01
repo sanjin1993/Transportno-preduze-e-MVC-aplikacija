@@ -1,0 +1,42 @@
+﻿@using Web.Areas.ModulMehanicar.Models
+@using PagedList
+
+@model IPagedList <Web.Areas.ModulMehanicar.Models.DobavljacPrikaziVM>
+
+
+@Html.ActionLink("Dodaj dobavljača", "Dodaj", new {@class="btn btn-success"})
+<div class="x_panel">
+    <div class="x_title">
+        <h3>Prikazi dobavljace</h3>
+    </div>
+    <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <td>Naziv dobavljaca</td>
+                <td>Adresa</td>
+                <td>Telefon</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (DobavljacPrikaziVM x in Model)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+                    <td>@x.Adresa</td>
+                    <td>@x.Telefon</td>
+
+                    <td class="td-nabavka">@Html.ActionLink("Uredi", "Uredi", new { dobavljacId = x.DobavljacId }, new { @class = "btn btn-success btn-sm " })</td>
+                    @*<td class="td-nabavka" >@Html.ActionLink("Obriši", "Obrisi", new { dobavljacId = x.DobavljacId }, new { onclick = "return confirm('Are sure wants to delete?');" })</td>*@
+                    <td><input id="ButtonDelete" type="button" value="Obriši" class="btn btn-danger btn-sm" onclick="if (confirm('Da li ste sigurni da zelite obrisati stavku?')) location.href='@Url.Action("Obrisi", "Dobavljac", new { dobavljacId = x.DobavljacId })'" /></td>
+                    <td class="td-nabavka">@Ajax.ActionLink("Prikazi nabavke", "NabavkaStavke", new { dobavljacID = x.DobavljacId }, new AjaxOptions { HttpMethod = "get", UpdateTargetId = "nabavke" }, new { @class = "btn btn-info pull-left btn-sm" })</td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div id="nabavke">
+
+    </div>
+</div>

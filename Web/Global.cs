@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using TransportnoPreduzece.Data.Models;
 
-namespace TransportnoPreduzece.Web
+namespace Web
 {
     public class Global
     {
-        public static Zaposlenik odabraniVozac { get; set; }
+      
+            public static Zaposlenik odabraniVozac { get; set; }
+        
     }
 }

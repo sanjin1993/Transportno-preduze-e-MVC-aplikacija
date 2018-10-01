@@ -1,0 +1,23 @@
+﻿@model Web.Areas.ModulMehanicar.Models.OdrzavanjeDetaljnoVM
+<div class="col-md-6">
+    <div>
+        <h2>Zakljuci status za instradaciju za vozilo:</h2>
+        <h2> @Model.Datum.ToShortDateString() || @Model.Voziloo.Model - @Model.Voziloo.Proizvodzac</h2>
+
+
+
+
+        @using (Ajax.BeginForm("ZakljuciStatus", new { voziloId = Model.VoziloId }, new AjaxOptions { HttpMethod = "post", OnSuccess = "updateModel(data);" }))
+        {
+            <div class="form-group">
+                <label>Statusi</label>
+                @Html.DropDownListFor(model => model.StatusId, Model.Statusi, new { @class = "form-control" })
+
+            </div>
+            <div>
+                <input type="submit" value="Spremi" class="btn btn-success" />
+            </div>
+        }
+
+    </div>
+</div>

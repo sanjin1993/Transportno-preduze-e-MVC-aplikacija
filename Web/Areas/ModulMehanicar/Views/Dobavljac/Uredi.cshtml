@@ -1,0 +1,31 @@
+﻿
+@model Web.Areas.ModulMehanicar.Models.DobavljacDetaljnoVM
+
+
+<h2></h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="panel-body" id="instradacija-info">
+                <form action="/ModulMehanicar/Dobavljac/Snimi" />
+                @Html.HiddenFor(model => model.DobavljacId)
+
+                <div class="form-group">
+                    <label>Naziv dobavljaca</label>
+                    @Html.TextBoxFor(model => model.Naziv, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Adresa dobavljaca</label>
+                    @Html.TextBoxFor(model => model.Adresa, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Telefon dobavljaca</label>
+                    @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+                </div>
+                <div>
+                    <input type="submit" value="Spremi" class="btn btn-primary pull-right" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using PagedList;
+@using Web.Areas.ModulMehanicar.Models
+
+@model IPagedList<Web.Areas.ModulMehanicar.Models.NabavkaPrikaziVM>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista nabavki</h2>
+
+@Html.ActionLink("Nova nabavka", "DodajNabavku", new { @class= "btn btn-success"})
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <td>Sifra nabavke</td>
+        <td>Datum nabavke</td>
+        <td>Dobavljac</td>
+        <td>Broj stavki</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (NabavkaPrikaziVM x in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(x.Sifra.ToString(), "Details", new { nabavkaId = x.NabavkaId })</td>
+            <td>@x.DatumNabavke.ToShortDateString()</td>
+            <td>@x.DobavljacNaziv</td>
+            <td>@x.BrojStavki</td>
+        </tr>
+    }
+    </tbody>
+</table>

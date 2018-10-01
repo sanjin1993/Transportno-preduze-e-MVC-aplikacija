@@ -1,0 +1,91 @@
+﻿
+@using PagedList;
+@using Web.Areas.ModulMehanicar.Models
+
+@model List<Web.Areas.ModulMehanicar.Models.StavkaNabavkaVM>
+<div style="overflow-y:auto;height:250px;">
+    <hr />
+    <div class="form-inline">
+        <div id="ajaxDiv">
+            <div class="form-group col-md-2">
+                <input type="hidden" value="@ViewBag.id" id="nabavkaId" />
+
+                <label>Pretraži po nazivu</label>
+                <div class="parent1">
+                    <div class="child1">
+                        <input id="naziv" class="form-control" />
+                    </div>
+                    <div class="child2">
+
+                        <a href="/ModulMehanicar/Nabavka/Lista" id="btnFilt" class="btn btn-primary">Filtriraj</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="msg">
+                <table style="margin:10px 30px 10px 10px ">
+
+                    <thead>
+                        <tr>
+                            <th style="font-size:larger">Naziv</th>
+                            <th style="font-size:larger">Cijena</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (StavkaNabavkaVM item in Model)
+                        {
+                            <tr>
+                                <td>@item.Naziv</td>
+                                <td class="col-md-5">@item.Cijena BAM</td>
+                                <td>@Html.ActionLink(((char)160).ToString(), "Obrisi", new { stavkaId = item.NabavkaStavkaId }, new { @class = "glyphicon glyphicon-remove-circle" })</td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script>
+
+        $("#btnFilt").on("click", function () {
+            event.preventDefault();
+
+
+
+            var naziv = $("#naziv").val();
+            var nabavkaId = $("#nabavkaId").attr("value");
+
+            var url = $(this).attr("href");
+
+
+            $.ajax({
+                type: "get",
+                url: url,
+                data: { nabavkaId: nabavkaId, naziv:naziv  },
+                success: function (result) {
+                    if (result.length == 0) {
+                        $("#msg").html("Nema poklapanja");
+                    }
+                    else {
+                        $("#ajaxDiv").html(result);
+                    }
+
+                }
+
+
+            });
+        });
+
+
+ 
+    </script>

@@ -364,3 +364,7 @@ C:\Users\Jasmina\source\repos\Project3\Web\obj\Release\Web.csproj.CoreCompileInp
 C:\Users\Jasmina\source\repos\Project3\Web\obj\Release\Web.csproj.CopyComplete
 C:\Users\Jasmina\source\repos\Project3\Web\obj\Release\Web.dll
 C:\Users\Jasmina\source\repos\Project3\Web\obj\Release\Web.pdb
+C:\Users\Jasmina\source\repos\Project9\Web\obj\Release\Web.csprojResolveAssemblyReference.cache
+C:\Users\Jasmina\source\repos\Project9\Web\obj\Release\Web.csproj.CoreCompileInputs.cache
+C:\Users\Jasmina\source\repos\Project9\Web\obj\Release\Web.dll
+C:\Users\Jasmina\source\repos\Project9\Web\obj\Release\Web.pdb

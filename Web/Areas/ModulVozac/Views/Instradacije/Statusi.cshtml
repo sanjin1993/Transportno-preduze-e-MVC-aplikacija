@@ -1,0 +1,26 @@
+﻿
+@model Web.Areas.ModulVozac.Models.InstradacijeDetaljiVM
+<div class="col-md-6" style="margin-bottom:40px; margin-top:40px">
+  
+       
+    <div class="form-inline">
+           
+        <h2 style="font-weight:bold" > DATUM: @Model.Datum.ToShortDateString()</h2>
+
+    </div>
+
+    <input value="@Model.InstradacijaId" type="hidden"/>
+    @using (Html.BeginForm("ZakljuciStatus", "Instradacije", new { instradacijaId = Model.InstradacijaId }, FormMethod.Post, new { data_ajax = "false" }))
+    {
+        <div class="form-group">
+            <label>Odaberite status:</label>
+            @Html.DropDownListFor(model => model.StatusInstradacijeId, Model.Statusi, new { @class = "form-control" })
+
+        </div>
+        <div>
+            <input type="submit" value="Spremi" class="btn btn-success btn-sm" />
+        </div>
+    }
+
+  
+</div>

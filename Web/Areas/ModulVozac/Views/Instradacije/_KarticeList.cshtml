@@ -1,0 +1,53 @@
+﻿
+@using PagedList.Mvc
+@using PagedList
+
+@using Web.Areas.ModulVozac.Models
+@model IPagedList<Web.Areas.ModulVozac.Models.TrosakBenzinPrikaziVM>
+
+@{
+    // Layout = null;
+}
+<div class="x_content">
+
+    <table class="table table-hover ">
+        <thead>
+        <tr>
+            <th>Datum</th>
+
+            <th>Kolicina litara</th>
+            <th>Benzinska pumpa</th>
+            <th>Iznos</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (TrosakBenzinPrikaziVM item in Model)
+        {
+
+            <tr>
+
+                <td>@item.DatumKoristenja</td>
+
+                <td>@item.KolicinaLitara</td>
+                <td>@item.BenzinskaPumpa</td>
+                <td>@item.UkupanIznos</td>
+                <td><input id="ButtonDelete" type="button" value="Obriši" class="btn btn-danger btn-xs" onclick="if (confirm('Da li ste sigurni da zelite obrisati stavku?')) location.href='@Url.Action("ObrisiKarticu", "Instradacije", new { karticaId = item.KarticaVozacId })'" /></td>
+
+            </tr>
+
+        }
+        </tbody>
+    </table>
+
+ 
+
+
+
+
+
+</div>
+
+
+
+
