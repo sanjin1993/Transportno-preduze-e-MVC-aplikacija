@@ -1,8 +1,9 @@
 ﻿@model Web.Areas.ModulVozac.Models.TroskoviEditVM
 @{}
     
-@using (Html.BeginForm("ZakljuciTrosak", "Instradacije", new { instradacijaId = Model.InstradacijaId }, FormMethod.Post, new { data_ajax = "false" }))
+@using (Ajax.BeginForm("ZakljuciTrosak", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateModel(data);" }))
 {
+    @Html.HiddenFor(model=> model.InstradacijaId)
     <table>
         <tbody>
         <tr>

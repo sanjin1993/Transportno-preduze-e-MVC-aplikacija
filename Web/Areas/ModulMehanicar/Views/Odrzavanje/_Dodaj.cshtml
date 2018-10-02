@@ -6,8 +6,7 @@
 
 <h2>Dodaj novo odrzavanje</h2>
 
-@using (Ajax.BeginForm("Snimi", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "uredi_odrzavanje" }))
-{
+
 
     <form action="/ModulMehanicar/Odrzavanje/Snimi">
 
@@ -17,6 +16,7 @@
             <label>Troskovi</label>
 
             @Html.TextBoxFor(model => model.Troskovi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Troskovi, null, new { style = "color:red" })
         </div>
         <div class="form-group">
             <label>Datum odrzavanja</label>
@@ -25,14 +25,17 @@
         <div class="form-group">
             <label>Kilometraza</label>
             @Html.TextBoxFor(model => model.Kilometraza, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Kilometraza, null, new { style = "color:red" })
         </div>
         <div class="form-group">
             <label>Detalji:</label>
             @Html.TextAreaFor(model => model.Detaljno, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Detaljno, null, new { style = "color:red" })
         </div>
         <div class="form-group">
             <label>Vozilo</label>
             @Html.DropDownListFor(model => model.VoziloId, Model.VoziloStavke, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.VoziloId, null, new { style = "color:red" })
         </div>
         <div class="form-group">
             <label>Prikljucno vozilo</label>
@@ -41,6 +44,7 @@
         <div class="form-group">
             <label>Vozilo</label>
             @Html.DropDownListFor(model => model.TipOdrzavanjaId, Model.TipOdrzavanjaStavke, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.TipOdrzavanjaId, null, new { style = "color:red" })
         </div>
         <div class="aParent">
             <input type="submit" value="Snimi" class="btn btn-success" style="width:139px" />
@@ -49,4 +53,4 @@
         </div>
     </form>
 
-}
+

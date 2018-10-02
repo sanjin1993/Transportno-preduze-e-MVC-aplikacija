@@ -4,18 +4,22 @@
 @{
     ViewBag.Title = "DodajNabavku";
 }
+
 <div class="aParent">
-    @using (Ajax.BeginForm("SnimiS", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "stavke_output" }))
+    @using (Ajax.BeginForm("SnimiS", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "stavke_output"}))
     {
+   
         <div class="row dispozicija unos aChild">
             <div class="x_panel">
                 <div class="x_title">
                     <h3 class="x-title">Nova nabavka</h3>
                 </div>
                 <div class="panel-body detalji">
+                    <input id="nabavkaId" hidden value="@Model.NabavkaId" />
                     <div class="form-group">
                         <label>SIfra</label>
                         @Html.TextBoxFor(x => x.Sifra, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sifra)
                     </div>
                     <div class="form-group">
                         <label>Naziv dobavljaca</label>
@@ -36,18 +40,18 @@
 
                 </div>
 
-                @*<div>
-                        @Ajax.ActionLink("Dodaj stavku", "DodajStavku", new { nabavkaId = Model.NabavkaId }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "dodajS" })
-                    </div>*@
             </div>
         </div>
+   
     }
 
     <div id="stavke_output">
 
     </div>
-
+       
 </div>
 <div id="stavkeList" class="aChild">
 
 </div>
+
+

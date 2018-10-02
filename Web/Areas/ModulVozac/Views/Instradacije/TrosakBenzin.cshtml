@@ -2,7 +2,7 @@
 @model Web.Areas.ModulVozac.Models.TrosakBenzinEditVM
 @{}
 
-@using (Html.BeginForm("ZakljuciBenzinTrosak", "Instradacije", FormMethod.Post, new { data_ajax = "false" }))
+@using (Ajax.BeginForm("ZakljuciBenzinTrosak", new AjaxOptions { HttpMethod = "POST", OnSuccess = "updateModel(data);" }))
 {
 
     <table>
@@ -55,6 +55,7 @@
             <tr>
                 <td> <label>Benzinska pumpa:</label></td>
                 <td> @Html.DropDownListFor(model => model.BenzinskaPumpaId, Model.BenzinskePumpe, new { @class = "form-control" })</td>
+                <td> @Html.ValidationMessageFor(model => model.BenzinskaPumpaId)</td>
             </tr>
 
             <tr>

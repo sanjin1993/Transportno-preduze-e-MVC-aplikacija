@@ -20,11 +20,11 @@
                 @Html.TextBoxFor(model => model.Datum, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label>Kilometraza</label>
+                <label>Kilometraza:</label>
                 @Html.TextBoxFor(model => model.Kilometraza, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label>Troskovi</label>
+                <label>Detaljno:</label>
                 @Html.TextAreaFor(model => model.Detaljno, new { @class = "form-control" })
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
                 @Html.DropDownListFor(model => model.TipOdrzavanjaId, Model.TipOdrzavanjaStavke, new { @class = "form-control" })
             </div>
             <div>
-                <input type="submit" value="Spremi" class="btn btn-default" />
+                <input type="submit" value="Spremi" class="btn btn-primary" />
             </div>
         </form>
     </div>

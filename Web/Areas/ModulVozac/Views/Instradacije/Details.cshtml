@@ -39,7 +39,7 @@
                 <td><h5>Definiši troškove:</h5></td>
 
                 <td>@Ajax.ActionLink("Dodaj ostale utroške", "Troskovi", new { instradacijaId = Model.InstradacijaId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ajaxDiv" }, new { @class = "btn btn-primary btn-sm" })</td>
-                <td class="td-info">@Ajax.ActionLink("Dodaj utrošak sipanja", "TrosakBenzin", new { vozacId = Model.VozacId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ajaxDiv" }, new { @class = "btn btn-primary btn-sm" })</td>
+                <td class="td-info">@Ajax.ActionLink("Dodaj utrošak sipanja", "TrosakBenzin", new { vozacId = Model.VozacId , instradacijaId = Model.InstradacijaId }, new AjaxOptions() { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ajaxDiv" }, new { @class = "btn btn-primary btn-sm" })</td>
             </tr>
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
@@ -163,8 +164,10 @@ namespace Web.Areas.ModulVozac.Controllers
             return View(Model);
         }
 
-        public ActionResult PrikaziKartice(int vozacId, int page = 1)
+        public ActionResult PrikaziKartice(int? vozacId, int page = 1)
         {
+            if (vozacId == null)
+                vozacId = Global.odabraniVozac.ZaposlenikId;
             var Model = ctx.KarticaVozaci.Where(x => x.VozacId == vozacId).Include(x => x.BenzinskaPumpa)
                 .OrderByDescending(x => x.DatumKoristenja)
 
@@ -177,7 +180,7 @@ namespace Web.Areas.ModulVozac.Controllers
                       DatumKoristenja = DateTime.Now,
                       KolicinaLitara = x.KolicinaLitara,
                       UkupanIznos = x.UkupanIznos,
-                      VozacId = vozacId,
+                      VozacId = Global.odabraniVozac.ZaposlenikId,
                       BenzinskaPumpaId = x.BenzinskaPumpaId,
                       BenzinskaPumpa = x.BenzinskaPumpa.Adresa,
                       KarticaVozacId = x.KarticaVozacId
@@ -272,7 +275,7 @@ namespace Web.Areas.ModulVozac.Controllers
         }
 
         [HttpGet]
-        public ActionResult TrosakBenzin(int vozacId)
+        public ActionResult TrosakBenzin(int vozacId, int instradacijaId)
         {
 
             TrosakBenzinEditVM model = new TrosakBenzinEditVM();
@@ -287,7 +290,8 @@ namespace Web.Areas.ModulVozac.Controllers
                 KolicinaLitara = 0,
                 UkupanIznos = 0,
                 VozacId = vozacId,
-                KarticaId = ctx.KarticaZaposlenici.Where(y => y.ZaposlenikId == vozacId).FirstOrDefault().Kartica.KarticaId
+                KarticaId = ctx.KarticaZaposlenici.Where(y => y.ZaposlenikId == vozacId).FirstOrDefault().Kartica.KarticaId,
+                instradacijaId = instradacijaId 
             }).FirstOrDefault();
 
 
@@ -321,7 +325,7 @@ namespace Web.Areas.ModulVozac.Controllers
                 ctx.Troskovi.Add(trosak);
 
                 ctx.SaveChanges();
-                return Json(new {Url = "Details?id=" + trosak.InstradacijaId});
+                return Json(new {Url = "?id=" + trosak.InstradacijaId});
            
             }
             else
@@ -339,7 +343,7 @@ namespace Web.Areas.ModulVozac.Controllers
 
         }
 
-        public ActionResult ZakljuciBenzinTrosak(TrosakBenzinEditVM model)
+        public JsonResult ZakljuciBenzinTrosak(TrosakBenzinEditVM model)
         {
 
             if (ModelState.IsValid)
@@ -362,7 +366,7 @@ namespace Web.Areas.ModulVozac.Controllers
 
 
                     ctx.SaveChanges();
-                    return RedirectToAction("PrikaziKartice", new { vozacId = model.VozacId });
+                    return Json(new { Url = "?instradacijaId=" + model.instradacijaId}, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {

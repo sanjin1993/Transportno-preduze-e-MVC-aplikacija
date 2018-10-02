@@ -49,8 +49,26 @@ namespace Web.Areas.ModulMehanicar.Controllers
         public ActionResult Obrisi(int dobavljacId)
         {
             Dobavljac dobavljac = ctx.Dobavljaci.Find(dobavljacId);
+            List<Nabavka> lista = ctx.Nabavke.Where(x => x.DobavljacId == dobavljacId).ToList();
+            List<NabavkaStavka> stavke = ctx.StavkeNabavke.ToList();
+            foreach (var item in lista)
+            {
+                foreach (var s in stavke)
+                {
+                    if (item.Id == s.NabavkaId)
+                        ctx.StavkeNabavke.Remove(s);
+                }
+            }
+
+            foreach (var n in lista)
+            {
+                Nabavka nab = ctx.Nabavke.Where(x => x.Id == n.Id).FirstOrDefault();
+                ctx.Nabavke.Remove(nab);
+            }
             ctx.Dobavljaci.Remove(dobavljac);
             ctx.SaveChanges();
+
+          
 
             return RedirectToAction("Prikazi");
 
@@ -61,10 +79,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
             return View("Uredi", Model);
 
-            ctx.SaveChanges();
-
-            return RedirectToAction("Prikazi");
-
+          
         }
 
         public ActionResult Snimi(DobavljacDetaljnoVM Model)
@@ -73,28 +88,33 @@ namespace Web.Areas.ModulMehanicar.Controllers
             {
                 return View("Uredi", Model);
             }
-            Dobavljac dobavljac;
-
-            if (Model.DobavljacId == 0)
-            {
-                dobavljac = new Dobavljac();
-                ctx.Dobavljaci.Add(dobavljac);
-            }
+         
 
             else
             {
-                dobavljac = ctx.Dobavljaci.Where(x => x.Id == Model.DobavljacId)
-                    .FirstOrDefault();
+                Dobavljac dobavljac;
+                if (Model.DobavljacId == 0)
+                {
+                    dobavljac = new Dobavljac();
+                    ctx.Dobavljaci.Add(dobavljac);
+                }
+
+                else
+                {
+                    dobavljac = ctx.Dobavljaci.Where(x => x.Id == Model.DobavljacId)
+                        .FirstOrDefault();
+                }
+
+                dobavljac.Naziv = Model.Naziv;
+                dobavljac.Adresa = Model.Adresa;
+                dobavljac.Telefon = Model.Telefon;
+                dobavljac.ZaposlenikId = Global.odabraniVozac.ZaposlenikId;
+
+                ctx.SaveChanges();
+
+                return RedirectToAction("Prikazi");
             }
-
-            dobavljac.Naziv = Model.Naziv;
-            dobavljac.Adresa = Model.Adresa;
-            dobavljac.Telefon = Model.Telefon;
-            dobavljac.ZaposlenikId = Global.odabraniVozac.ZaposlenikId;
-
-            ctx.SaveChanges();
-
-            return RedirectToAction("Prikazi");
+          
         }
 
         [HttpGet]

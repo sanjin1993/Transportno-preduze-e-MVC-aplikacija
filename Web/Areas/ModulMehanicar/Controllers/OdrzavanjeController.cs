@@ -33,8 +33,9 @@ namespace Web.Areas.ModulMehanicar.Controllers
                     Troskovi = x.Troskovi,
                     Datum = x.Datum,
 
-                    Tip_Odrzavanja = x.TipOdrzavanja.Naziv
-                }).ToPagedList(page, 15);
+                    Tip_Odrzavanja = x.TipOdrzavanja.Naziv,
+                    StatusVozila =  x.Vozilo.StatusVozila.Naziv
+                }).ToPagedList(page, 40);
 
             return View("Prikazi", Model);
         }
@@ -81,7 +82,6 @@ namespace Web.Areas.ModulMehanicar.Controllers
                 Voziloo = x.Vozilo
             }).FirstOrDefault();
 
-            ctx.SaveChanges();
 
             model.Statusi = BindStatusi();
 
@@ -89,7 +89,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
             return PartialView("Statusi", model);
         }
 
-        public ActionResult ZakljuciStatus(Vozilo Model, int statusID)
+        public ActionResult ZakljuciStatus(int statusID, OdrzavanjeDetaljnoVM vm)
         {
             //if (!ModelState.IsValid)
             //{
@@ -99,10 +99,10 @@ namespace Web.Areas.ModulMehanicar.Controllers
             Vozilo vozilo;
 
 
-            if (Model.VoziloId != 0)
+            if (vm.Voziloo.VoziloId != 0)
 
             {
-                vozilo = ctx.Vozila.Where(x => x.VoziloId == Model.VoziloId).FirstOrDefault();
+                vozilo = ctx.Vozila.Where(x => x.VoziloId == vm.Voziloo.VoziloId).FirstOrDefault();
 
                 vozilo.StatusVozilaId = statusID;
 
@@ -111,7 +111,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
 
             ctx.SaveChanges();
-            return PartialView("Details", Model);
+            return Redirect("/ModulMehanicar/Odrzavanje/Details?odrzavanjeID=" + vm.OdrzavanjeId);
         }
 
         private List<SelectListItem> BindStatusi()
@@ -171,7 +171,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
             ctx.SaveChanges();
 
-            return RedirectToAction("Details", new { odrzavanjeId = odrzavanje.OdrzavanjeId });
+            return RedirectToAction("Details", new { odrzavanjeID = odrzavanje.OdrzavanjeId });
 
         }
 
@@ -191,9 +191,14 @@ namespace Web.Areas.ModulMehanicar.Controllers
                     Detaljno = x.Detaljno,
                     PrikljucnoVozilo = x.PrikljucnoVozilo.RegistarskeOznake,
                     Vozilo = x.Vozilo.RegistarskeOznake,
+                    StatusVozila =  x.Vozilo.StatusVozila.Naziv
 
                 }
                 ).FirstOrDefault();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(Model);
+            }
 
             return View(Model);
         }

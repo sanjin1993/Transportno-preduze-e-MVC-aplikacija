@@ -13,9 +13,12 @@ namespace Web.Areas.ModulMehanicar.Models
 
         [DataType(DataType.Currency)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
-        public double Troskovi { get; set; }
         public DateTime Datum { get; set; }
+        [Required(ErrorMessage = "Trosak0 je obavezan.")]
+        public double Troskovi { get; set; }
+      
 
+        public string StatusVozila { get; set; }
         public string Vozilo { get; set; }
         public string PrikljucnoVozilo { get; set; }
         public string Tip_Odrzavanja { get; set; }

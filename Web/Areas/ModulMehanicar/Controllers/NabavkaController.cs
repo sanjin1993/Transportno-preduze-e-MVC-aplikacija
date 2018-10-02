@@ -6,11 +6,12 @@ using System.Web.Mvc;
 using PagedList;
 using TransportnoPreduzece.Data.DAL;
 using TransportnoPreduzece.Data.Models;
+using TransportnoPreduzece.Web.Areas.ModulDispecer.Models;
 using Web.Areas.ModulMehanicar.Models;
 
 namespace Web.Areas.ModulMehanicar.Controllers
 {
-    [Authorize(Roles = "mehaničar")]
+    //[Authorize(Roles = "mehaničar")]
     public class NabavkaController : Controller
     {
         TPContext ctx = new TPContext();
@@ -64,13 +65,16 @@ namespace Web.Areas.ModulMehanicar.Controllers
         }
         public ActionResult DodajNabavku()
         {
+           
+                NabavkaDetaljnoVM vm = new NabavkaDetaljnoVM();
 
-            NabavkaDetaljnoVM Model = new NabavkaDetaljnoVM();
+                vm.DobavljaciStavke = BindDobavljaci();
+                vm.nabavke = new List<NabavkaStavka>();
+                return View("DodajNabavku", vm);
 
-            Model.DobavljaciStavke = BindDobavljaci();
-            Model.nabavke = new List<NabavkaStavka>();
+            
+         
 
-            return View("DodajNabavku", Model);
         }
 
         private List<SelectListItem> BindDobavljaci()
@@ -113,21 +117,36 @@ namespace Web.Areas.ModulMehanicar.Controllers
         }
         public ActionResult SnimiS(NabavkaDetaljnoVM nabavka)
         {
-            Nabavka n = new Nabavka
+            if (ModelState.IsValid)
             {
-                Id = nabavka.NabavkaId,
-                Datum = nabavka.DatumNabavke,
-                Sifra = nabavka.Sifra,
-                DobavljacId = nabavka.DobavljacId,
+                Nabavka n = new Nabavka
+                {
+                    Id = nabavka.NabavkaId,
+                    Datum = nabavka.DatumNabavke,
+                    Sifra = nabavka.Sifra,
+                    DobavljacId = nabavka.DobavljacId,
 
-            };
-            n.Stavke = new List<NabavkaStavka>();
+                };
+                n.Stavke = new List<NabavkaStavka>();
 
 
-            ctx.Nabavke.Add(n);
-            ctx.SaveChanges();
+                ctx.Nabavke.Add(n);
+                ctx.SaveChanges();
 
-            return PartialView("_DodajStavku");
+                return PartialView("_DodajStavku");
+            }
+            else
+            {
+
+                nabavka.DobavljaciStavke = BindDobavljaci();
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("DodajNabavku", nabavka);
+                }
+                return View("DodajNabavku", nabavka);
+
+            }
+               
         }
         public ActionResult DodajStavku(int? nabavkaId)
         {
@@ -214,12 +233,18 @@ namespace Web.Areas.ModulMehanicar.Controllers
         }
 
 
-        public ActionResult SnimiStavku(StavkaNabavkaVM Model)
+        public JsonResult SnimiStavku(StavkaNabavkaVM Model)
         {
             int nabavkaId = 0;
             if (!ModelState.IsValid)
             {
-                return View("Details");
+                var errors = ViewData.ModelState.Where(n => n.Value.Errors.Count > 0).Select(x => new ErrorHelper()
+                    {
+                        Message = x.Value.Errors.Select(y => y.ErrorMessage).FirstOrDefault(),
+                        Name = x.Key
+                    }
+                ).ToList();
+                return Json(new { Errors = errors });
             }
 
             NabavkaStavka stavka;
@@ -238,7 +263,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
                     ctx.StavkeNabavke.Add(stavka);
                     ctx.SaveChanges();
 
-                    return RedirectToAction("Lista", new { nabavkaId = stavka.NabavkaId });
+                    return Json(new {Url = "Details?nabavkaId=" + Model.NabavkaId}, JsonRequestBehavior.AllowGet);
                 }
 
                 Nabavka n = ctx.Nabavke.OrderByDescending(x => x.Id).FirstOrDefault();
@@ -252,7 +277,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
 
 
-                return RedirectToAction("Lista", new { nabavkaId = stavka.NabavkaId });
+                return Json(new { Url = "Details?nabavkaId=" + stavka.NabavkaId }, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -260,7 +285,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
                 stavka.Naziv = Model.Naziv;
                 stavka.Cijena = Model.Cijena;
                 ctx.SaveChanges();
-                return RedirectToAction("Details", new { nabavkaId = Model.NabavkaId });
+                return Json(new { Url = "Details?id=" + Model.NabavkaId });
             }
 
 

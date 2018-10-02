@@ -13,14 +13,17 @@
                 <div class="form-group">
                     <label>Naziv dobavljaca</label>
                     @Html.TextBoxFor(model => model.Naziv, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model=>model.Naziv)
                 </div>
                 <div class="form-group">
                     <label>Adresa dobavljaca</label>
                     @Html.TextBoxFor(model => model.Adresa, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model=>model.Adresa)
                 </div>
                 <div class="form-group">
                     <label>Telefon dobavljaca</label>
                     @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model=>model.Telefon)
                 </div>
                 <div>
                     <input type="submit" value="Spremi" class="btn btn-primary pull-right" />
