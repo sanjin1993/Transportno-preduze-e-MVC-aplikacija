@@ -85,7 +85,7 @@
             var SetData = $("#dataFilter");
             SetData.html("");
             $.ajax({
-                type: "post",
+                type: "get",
                 url: "/Instradacije/Prikazi?datumOd=" + datumOd + "&DatumDo=" + datumDo,
                 contentType: "html",
                 success: function (result) {
