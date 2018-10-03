@@ -63,3 +63,17 @@ C:\Users\Jasmina\source\repos\Project10\Data\obj\Release\Data.csproj.CoreCompile
 C:\Users\Jasmina\source\repos\Project10\Data\obj\Release\Data.csproj.CopyComplete
 C:\Users\Jasmina\source\repos\Project10\Data\obj\Release\Data.dll
 C:\Users\Jasmina\source\repos\Project10\Data\obj\Release\Data.pdb
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\Data.dll.config
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\Data.dll
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\Data.pdb
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\EntityFramework.dll
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\EntityFramework.xml
+C:\Users\Jasmina\source\repos\Project11\Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.csprojResolveAssemblyReference.cache
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.Migrations.InitialCreate.resources
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.csproj.GenerateResource.cache
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.csproj.CoreCompileInputs.cache
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.csproj.CopyComplete
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.dll
+C:\Users\Jasmina\source\repos\Project11\Data\obj\Release\Data.pdb

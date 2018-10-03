@@ -62,8 +62,8 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
             foreach (var n in lista)
             {
-                Nabavka nab = ctx.Nabavke.Where(x => x.Id == n.Id).FirstOrDefault();
-                ctx.Nabavke.Remove(nab);
+                
+                ctx.Nabavke.Remove(n);
             }
             ctx.Dobavljaci.Remove(dobavljac);
             ctx.SaveChanges();

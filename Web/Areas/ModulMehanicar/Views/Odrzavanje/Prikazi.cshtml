@@ -20,29 +20,30 @@
 </div>
 <div id="uredi_odrzavanje">
     <h2>Lista odrzavanja</h2>
-   
+
 
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th>Troskovi odrzavanja</th>
-            <th>Datum odrzavanja</th>
-               
-            <th>Tip odrzavanja</th>
-        </tr>
+            <tr>
+                <th>Troskovi odrzavanja</th>
+                <th>Datum odrzavanja</th>
+
+                <th>Tip odrzavanja</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (OdrzavanjePrikaziVM item in Model)
-        {
-            <tr>
-                <td>@item.Troskovi</td>
-                <td>@item.Datum.ToShortDateString()</td>
-                   
-                <td>@item.Tip_Odrzavanja</td>
-                <td>@Html.ActionLink("Detalji","Details",new { odrzavanjeID = item.OdrzavanjeId })</td>
-            </tr>
-        }
+            @foreach (OdrzavanjePrikaziVM item in Model)
+            {
+                <tr>
+                    <td>@item.Troskovi</td>
+                    <td>@item.Datum.ToShortDateString()</td>
+
+                    <td>@item.Tip_Odrzavanja</td>
+                    <td>@Html.ActionLink("Detalji", "Details", new { odrzavanjeID = item.OdrzavanjeId })</td>
+                </tr>
+            }
         </tbody>
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("Prikazi", new { page }))
 
 </div>

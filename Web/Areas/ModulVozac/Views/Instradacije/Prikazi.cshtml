@@ -1,7 +1,7 @@
 ﻿@using PagedList
 @using PagedList.Mvc
 @using Web.Areas.ModulVozac.Models
-@model IEnumerable<Web.Areas.ModulVozac.Models.InstradacijePrikaziVM>
+@model PagedList<Web.Areas.ModulVozac.Models.InstradacijePrikaziVM>
 @{
 
 
@@ -70,7 +70,7 @@
         </tbody>
     </table>
 </div>
-
+@Html.PagedListPager(Model, page => Url.Action("Prikazi", new { page }))
 <div id="ajaxDiv">
 
 </div>

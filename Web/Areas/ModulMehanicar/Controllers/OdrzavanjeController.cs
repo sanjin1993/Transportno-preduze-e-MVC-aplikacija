@@ -35,7 +35,7 @@ namespace Web.Areas.ModulMehanicar.Controllers
 
                     Tip_Odrzavanja = x.TipOdrzavanja.Naziv,
                     StatusVozila =  x.Vozilo.StatusVozila.Naziv
-                }).ToPagedList(page, 40);
+                }).ToPagedList(page, 15);
 
             return View("Prikazi", Model);
         }
